@@ -1,69 +1,143 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+## fontend 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## dependencies 
+- axios 
+- redux
+- react-redux
+- react-router-dom (BrowserRouter)
+- react-incons/fa
+- http-proxy-middleware
+- redux-promise-middleware
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## file-structure 
+- src 
+ - components/
+ - TravelPage/
+    - TravelPage.js
+    - TravelPage.css
+        - Header/ 
+            - Header.js
+            - Header.css
+        - TravelCard/
+           - TravelCard.js
+           - TravelCard.css
 
-### `npm test`
+  - Dashboard/
+    - Dashboard.js
+    - Dashboard.css
+        Header/ 
+            - Header.js
+            - Header.css
+        EventList/
+            - EventsList.js
+            - EventsList.css
+        UserCard/
+            - UserCard.js
+            - UserCard.css
+        Schedule/
+            - Schedule.js
+            - Schedule.css
+ - App.js
+ - Index.js 
+ - reset.css
+ - duck/
+    - store.js
+    - reducer.js
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Routes 
 
-### `npm run build`
+## Login Routes
+- TravelBook => /
+- How It Works => /howitworks
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## User Routes
+- Explore => /
+- Dashboard => /dashboard
+- catchAll => '*'
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Redux State 
+```js
+const initialState = {
+    user: null,
+    events: []
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+    
+#backend 
 
-### `npm run eject`
+#dependencies 
+- express
+- massive
+- express-session
+- bcrypt
+- dotenv
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# server file structure 
+- server/
+ - index.js
+ - controller/ 
+    - authController.js
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# endpoints
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**auth** 
+- login => /api/travelbook/login
+- register => /api/travelbook/register 
+- userAccount => /api/travelbook/user
 
-## Learn More
+**places**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+API_KEY =  FyCDzsojFp7SGmRdz2woR6AtWeX91xR81jGkAm8p
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Travel Page 
+- getAllPlaces => https://api.sygictravelapi.com/1.1/en/places/${id}
+Travel Search 
+- getAllTours =>  https://api.sygictravelapi.com/1.1/en/places/tours/viator
+- getAllCategories => https://api.sygictravelapi.com/1.1/en/places/list?parents=city:1&categories=sightseeing&limit=10
+User Dashboard 
+- postUserPlaces => /api/travelbook/place/:id
+- putUserPlace => /api/travelbook/place/:id
+- deleteUserPlaces => /api/travelbook/place/:id
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### database 
 
-### Analyzing the Bundle Size
+- users
+```sql 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+create table users(
+    user_id serial primary key,
+    username varchar(40) not null,
+    password text not null,
+    email text not null
+)
 
-### Making a Progressive Web App
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+```sql
+create table events(
+    event_id serial primary key,
+    event text not null,
+    user_id integer references users(user_id)
+);
 
-### Advanced Configuration
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### dotenv
 
-### Deployment
+```text
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+SESSION_SECRET = 
+SEVER_PORT = 
+CONNECT_STRING = 
 
-### `npm run build` fails to minify
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# travelbook
+
+Notes: Travel Book Pro 
+Book  && Pay for travel packages
