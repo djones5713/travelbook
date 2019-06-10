@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Switch, Route } from 'react-router-dom';
+import TravelBook from './Components/TravelBook/TravelBook';
+import SignUp from './Components/TravelBook/SignUp/SignUp';
+import About from './Components/TravelBook/About/About';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TravelBook />
+    <Switch>
+        <Route path="/" />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/how-it-works" component={About} />
+        <Route path='*'
+        render={() => {
+          return <div>PAGE NOT FOUND</div>
+        }} />
+    </Switch>
     </div>
+ 
   );
 }
 

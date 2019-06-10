@@ -18,6 +18,9 @@
  - TravelPage/
     - TravelPage.js
     - TravelPage.css
+ - ExplorePage/
+    - ExplorePage.js
+    - ExplorePage.css
         - Header/ 
             - Header.js
             - Header.css

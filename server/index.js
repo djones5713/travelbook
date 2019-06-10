@@ -7,7 +7,7 @@ const massive = require('massive');
 
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
-const { register } = require('./controller/authController');
+const { register, login } = require('./controller/authController');
 
 
 app.use(express.json())
@@ -25,7 +25,9 @@ app.use(
     })
 )
 
-app.get('/api/travelbook/register', register)
+// Auth 
+app.post('/api/travelbook/register', register)
+app.post('/api/travelbook/login', login)
 
 const port = SERVER_PORT || 4000
 
