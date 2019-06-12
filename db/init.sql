@@ -4,9 +4,9 @@ drop table if exists users;
 
 create table users(
     user_id serial primary key,
-    username varchar(40) not null,
+    username varchar(40) not null unique,
     password text not null,
-    email text not null
+    email text not null unique
 )
 
 insert into users(username, password, email)

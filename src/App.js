@@ -1,43 +1,39 @@
 import React, { Component }from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
+import TravelBook from './Components/TravelBook/TravelBook';
+import About from './Components/TravelBook/About/About';
+import SignIn from './Components/TravelBook/SignIn/SignIn';
+import Dashboard from './Components/Dashboard/Dashboard';
+import Explore from './Components/Explore/Explore';
+import CreateAccount from './Components/TravelBook/CreateAccount/CreateAccount';
 import './App.css';
-
-
-const User = ({match}) => {
-  return (<h1> Hello about {match.params.username}</h1>)
-}
 
 class App extends Component {
 render(){
  return (
-  <Router>
-    <div className="App">
-    <ul>
-    <li><NavLink to="/" exact activeStyle={{color:'green'}} >Home</NavLink></li>
-    <li><NavLink to="/about" exact activeStyle={{color:'green'}}>About</NavLink></li>
-    <li><NavLink to="/user/Destiny" exact activeStyle={{color:'green'}}>User</NavLink></li>
 
-    </ul>
+   <div className="App" >
+        <ul>
+            <li><NavLink to="/" exact activeStyle={{color:'green'}} >Travel Book</NavLink></li>
+            <li><NavLink to="/about" exact activeStyle={{color:'green'}}> How It Works </NavLink></li>
+            <li><NavLink to="/signin" exact activeStyle={{color:'green'}}>SignIn</NavLink></li>
+            <li><NavLink to="/create-account" exact activeStyle={{color:'green'}}>Create Account</NavLink></li>
+        </ul>
+      <Switch>
+          <Route path="/"  exact strict component={TravelBook} />
+          <Route path="/about" exact strict component={About} />
+          <Route path="/signin" exact strict component={SignIn} />
+          <Route path="/create-account" exact strict component={CreateAccount} />
+          <Route path="/explore"  exact strict component={Explore} />
+          <Route path="/dashboard" exact strict component={Dashboard} />
+ 
+      </Switch>
 
-    <Route path="/"  exact strict render={
-      () => {
-        return (<h1>Welcome Home</h1>);
-      }
-    } />
 
-    <Route path="/about" exact strict render={
-      () => {
-        return (<h1>Welcome About</h1>);
-      }
-    } />
+  </div>
 
-<Route path="/user/:username" exact strict component={User} />
-
-    </div>
-  </Router>
  )
+ }
 }
-};
 
-
-export default App;
+export default App; 

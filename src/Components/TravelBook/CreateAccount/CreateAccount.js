@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from '../../duck/reducer';
 
-class SignUp extends Component {
+function UserLinks ({ logout }) {
+    return(
+            <div>
+                <div>
+                    <ul>
+                        <li><Link to="/explore" exact activeStyle={{color:'green'}} >Explore</Link></li>
+                        <li><Link to="/dashboard" exact activeStyle={{color:'green'}}> Dashboard</Link></li>
+                    </ul>
+                </div>
+                <button onClick={logout}>Logout</button>
+            </div> 
+    )
+}
+
+class CreateAccount extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -20,17 +35,26 @@ class SignUp extends Component {
         })
     }
 
-    register = () => {
+
+    createAccount = () => {
         const { username, password, email } = this.state;
-        axios.post('/api/travelbook/register', { username, password, email }).then((res) => {
+        axios.post('/api/travelbook/create-account', { username, password, email }).then(res => {
+       
+            this.setState({ username: '', password: ''})
             this.props.setUser(res.data);
-        })
+        }).catch((err) => {console.log("LOGIN", err)})
     }
 
     login = () => {
         const { username, password } = this.state;
         axios.post('/api/travelbook/login', { username, password }).then((res) => {
             this.props.setUser(res.data);
+        })
+    }
+
+    logout = () => {
+        axios.get('/api/travelbook/login').then(res => {
+            this.props.setUser(null);
         })
     }
 
@@ -74,14 +98,13 @@ class SignUp extends Component {
                             />
                         </div>
                         <div>
-                            <button onClick={this.register}>Create Account</button>
-                            <button onClick={this.login}>SignIn</button>
+                            <button onClick={this.createAccount}>Create Account</button>
                         </div>
                     </div>
 
                 ) : (
-                    <div><h1>eeh4</h1></div>
-                )}
+                    < UserLinks logout={this.logout} />
+                   )}
             </div>
         )
     }
@@ -98,5 +121,4 @@ const invokedConnect = connect(
     mapStateToProps,
     mapDispatchToProps 
 )
-export default invokedConnect(SignUp)
-
+export default invokedConnect( CreateAccount)
