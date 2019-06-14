@@ -31,35 +31,47 @@ module.exports = {
     },
 
     login: async ( req, res) => {
-        const { username, password } = req.body
-        let userFound = await req.app.get('db').user_exists([username]);
-        console.log(password)
+        const { email, password } = req.body
+        let userFound = await req.app.get('db').user_exists([email]);
+        // console.log(password)
+        console.log('User Found', userFound)
         const user = userFound[0]
-        console.log(user)
+        // console.log('user', user)
        try {
 
             if(!user){
+                 console.log('not user if block ran')
                 res.status(201).send('User not found. Please create an account.')
+            } else{
+                const isAuth = bcrypt.compareSync(password, user.password);
+                console.log(user.password, password)
+                console.log('compared passwords',isAuth)
+                if(!isAuth) {
+                    console.log('not isAuth')
+                    res.status(201).send('Incorrect password');
+
+                    } else {
+                        console.log('request success')
+                    req.session.user = { username: user.username };
+                    res.status(200).send(req.session.user);
+                    
+                    }
             }
-            const isAuth = bcrypt.compareSync(password, user.password);
-            console.log(user.password)
-            console.log(isAuth)
-            if(!isAuth) {
-                return res.status(201).send('Incorrect password');
-            }
-            req.session.user = { username: user.username };
-            return res.send(req.session.user);
         } catch (error) {
+            console.log('caught error', error)
             res.status(409).send( 'User not found. Please create an account.');
         } 
         
     },
 
+
+    
+
     userInfo: (req, res) => {
         res.status(200).send(req.session.user);
     },
 
-    logout: async ( req, res) => {
+    logout: ( req, res) => {
         req.session.destroy()
         res.status(200).send('logged out')
     }

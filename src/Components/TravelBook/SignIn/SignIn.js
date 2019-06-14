@@ -1,28 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUser } from '../../duck/reducer';
+import { setUser } from '../../../ducks/userReducer';
 
-function UserLinks ({ logout }) {
-    return(
-            <div>
-                <div>
-                    <ul>
-                        <li><Link to="/explore" exact activeStyle={{color:'green'}} >Explore</Link></li>
-                        <li><Link to="/dashboard" exact activeStyle={{color:'green'}}> Dashboard</Link></li>
-                    </ul>
-                </div>
-                <button onClick={logout}>Logout</button>
-            </div> 
-    )
-}
 
 class SignIn extends Component {
     constructor(props){
         super(props)
         this.state = {
-            username: "",
+            email: "",
             password: "",
 
         }
@@ -34,44 +20,30 @@ class SignIn extends Component {
         })
     }
 
-
-    createAccount = () => {
-        const { username, password, email } = this.state;
-        axios.post('/api/travelbook/create-account', { username, password, email }).then(res => {
-       
-            this.setState({ username: '', password: ''})
-            this.props.setUser(res.data);
-        }).catch((err) => {console.log("LOGIN", err)})
-    }
-
     login = () => {
-        const { username, password } = this.state;
-        axios.post('/api/travelbook/login', { username, password }).then((res) => {
+        const { email, password } = this.state;
+        axios.post('/api/travelbook/login', { email, password }).then((res) => {
             this.props.setUser(res.data);
         })
     }
 
-    logout = () => {
-        axios.get('/api/travelbook/login').then(res => {
-            this.props.setUser(null);
-        })
-    }
+
 
     render(){
-        const { username, password } = this.state;
+        const { email, password } = this.state;
         const { user } = this.props;
         return (
             <div> 
                 {!user ? (
                     <div>
                         <div>
-                            username: {" "}
+                            email: {" "}
                             <input
                             onChange={e => 
                                 this.accountHandler(e.target.name, e.target.value)
                             }
-                            value={username}
-                            name="username"
+                            value={email}
+                            name="email"
                             />
                         </div>
                         <div>
@@ -90,7 +62,8 @@ class SignIn extends Component {
                     </div>
 
                 ) : (
-                    < UserLinks logout={this.logout} />
+                    <div>Hello User</div>
+                    
                     )}
             </div>
         )

@@ -5,10 +5,11 @@ const app = express();
 const session = require('express-session');
 const massive = require('massive');
 const checkSession = require('./middlewares/checkSession')
-const travelController = require('./controller/travelController')
 
-const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
+
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, REACT_APP_API_KEY } = process.env;
 const { createAccount, login, userInfo, logout } = require('./controller/authController');
+const { getLocations } = require('./controller/exploreController');
 
 // Middleware 
 app.use(express.json())
@@ -31,10 +32,15 @@ app.use(
 
 app.use(checkSession)
 
+
 // Auth Endpoints
 app.post('/api/travelbook/create-account', createAccount)
 app.post('/api/travelbook/login', login)
-// app.get('')
+app.get('/api/travelbook/user', userInfo)
+app.get('/api/travelbook/logout', logout)
+
+// Explore Endpoints
+app.get('/api/travelbook/explore',  getLocations)
 
 const port = SERVER_PORT || 4000
 

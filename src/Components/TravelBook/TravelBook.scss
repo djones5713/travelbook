@@ -1,0 +1,45 @@
+$buttonColor: orange;
+.header-img{
+    width: 100vw;
+    height: 680px;
+}
+
+.section-container{
+    position: absolute;
+    z-index: 2;
+    top: 66%;
+    left: 200px;
+    width: 70%;
+    height: 175px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 6px;
+
+}
+
+.section-container h3{
+    text-transform: uppercase;
+    text-align: center;
+    
+}
+.search-bar {
+   padding: 30px;
+}
+.search-bar input, select, button{
+    width: 200px;
+    height: 30px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 15px;
+}
+
+.search-bar input {
+    border-radius: 3px;
+}
+.search-bar button {
+    background-color: $buttonColor;
+    border-radius: 6px;
+    border-color: $buttonColor;
+    color: white;
+    font-weight: 800;
+}

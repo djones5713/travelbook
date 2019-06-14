@@ -1,22 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUser } from '../../duck/reducer';
+import { setUser } from '../../../ducks/userReducer';
 
-function UserLinks ({ logout }) {
-    return(
-            <div>
-                <div>
-                    <ul>
-                        <li><Link to="/explore" exact activeStyle={{color:'green'}} >Explore</Link></li>
-                        <li><Link to="/dashboard" exact activeStyle={{color:'green'}}> Dashboard</Link></li>
-                    </ul>
-                </div>
-                <button onClick={logout}>Logout</button>
-            </div> 
-    )
-}
 
 class CreateAccount extends Component {
     constructor(props){
@@ -45,18 +31,6 @@ class CreateAccount extends Component {
         }).catch((err) => {console.log("LOGIN", err)})
     }
 
-    login = () => {
-        const { username, password } = this.state;
-        axios.post('/api/travelbook/login', { username, password }).then((res) => {
-            this.props.setUser(res.data);
-        })
-    }
-
-    logout = () => {
-        axios.get('/api/travelbook/login').then(res => {
-            this.props.setUser(null);
-        })
-    }
 
 
     render(){
@@ -103,7 +77,7 @@ class CreateAccount extends Component {
                     </div>
 
                 ) : (
-                    < UserLinks logout={this.logout} />
+                    <div>Hello User</div>
                    )}
             </div>
         )
