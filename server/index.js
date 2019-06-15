@@ -9,7 +9,7 @@ const checkSession = require('./middlewares/checkSession')
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, REACT_APP_API_KEY } = process.env;
 const { createAccount, login, userInfo, logout } = require('./controller/authController');
-const { getLocations } = require('./controller/exploreController');
+const {  getDestinations} = require('./controller/destinationsController');
 
 // Middleware 
 app.use(express.json())
@@ -40,7 +40,7 @@ app.get('/api/travelbook/user', userInfo)
 app.get('/api/travelbook/logout', logout)
 
 // Explore Endpoints
-app.get('/api/travelbook/explore',  getLocations)
+app.get('/api/travelbook/destinations', getDestinations)
 
 const port = SERVER_PORT || 4000
 

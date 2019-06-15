@@ -13,12 +13,14 @@ class TravelBook extends Component {
         super(props) 
         this.state = {
             locations: [],
-            userInput: ""
+            userInput: "",
+            locationsInSpain: []
         }
     }
 
     componentDidMount(){
-        this.getAllLocations()
+        this.getAllDestinations()
+        this.getSpian()
     }
 
     handleChange(value){
@@ -26,6 +28,8 @@ class TravelBook extends Component {
             userInput: value
         })
     }
+
+// USERINPUT AXIOS CALL
 
     getData = () => {
         axios.get(`https://api.sygictravelapi.com/1.1/en/places/list?limit=10&query=${this.state.userInput}`, {
@@ -41,27 +45,70 @@ class TravelBook extends Component {
        })
     }
 
-    getAllLocations() {
-    axios.get('/api/travelbook/explore').then(res => {
+// SPAIN AXIOS CALL 
+
+    getSpian = () => {
+        axios.get('https://api.sygictravelapi.com/1.1/en/places/list?parents=country:1&levels=city&limit=10',  {
+             headers: {
+            "x-api-key":  REACT_APP_API_KEY
+         }
+        }).then(res => {
+             console.log('got response')
+            this.setState({
+                locationsInSpain: res.data.data.places
+            })
+            console.log(res.data.data.places)
+        })
+    }
+
+
+// INTERNAL AXIOS CALL
+
+    getAllDestinations() {
+    axios.get('/api/travelbook/destinations').then(res => {
         this.setState({
             locations: res.data
         })
         console.log(res.data)
     }).catch(error => console.log('GET ALL',error))
     }
+
+
     render(){
+// INTERNAL RENDER 
       const mappedgetAllLocations = this.state.locations.map( locations => (
-          <div key={locations.location_id}>
+          <div key={locations.destination_id}>
               <div className="popular-box">
                 <img className="card" src={locations.image_url} alt='location'/>
                 <div className="card-info">
                      <h2 className="card-name">{locations.name}</h2>
                      <button className="card-button">Add</button>
-                     <p className="card-p">{locations.description}</p>
                 </div>
               </div>
           </div>
       ))
+
+// SPAIN RENDER
+      const mappedLocationsInSpain = this.state.locationsInSpain.map(spain => (
+         <div key={spain.id}>
+              <div className="popular-box">
+              <img className="card" src={`${spain.thumbnail_url}`} alt="spain"/>
+              <div className="card-info">
+                <h2 className="card-name">{spain.name}</h2>
+                <p className="card-p"> {spain.perex}</p>
+              </div>
+              </div>
+          </div>
+      ))
+
+      
+
+
+
+
+
+
+
     return (
     <div> 
     
@@ -92,6 +139,7 @@ class TravelBook extends Component {
         <h1 className="popular-section">Popular Destination</h1>
          <hr className="popular-line"/>
         <div>{mappedgetAllLocations}</div>
+        {/* <div>{mappedLocationsInSpain}</div> */}
         
     </div>
 
