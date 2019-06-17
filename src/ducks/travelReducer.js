@@ -6,7 +6,7 @@ const initalState = {
 
 const FETCH_DESTINATIONS = "FETCH_DESTINATIONS"
 
-export default function (state = initalState, action){
+export default function reducer(state = initalState, action){
     switch(action.type){
         case FETCH_DESTINATIONS:
             return {

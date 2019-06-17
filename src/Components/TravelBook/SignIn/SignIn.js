@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setUser } from '../../../ducks/userReducer';
+import './SignIn.scss';
 
 
 class SignIn extends Component {
@@ -9,64 +10,79 @@ class SignIn extends Component {
         super(props)
         this.state = {
             email: "",
-            password: "",
-
+            password: ""
         }
     }
 
     accountHandler = (prop, value) =>{
+        console.log('VALUE')
         this.setState({
             [prop]: value
+           
         })
     }
 
     login = () => {
         const { email, password } = this.state;
+        console.log(this.state)
         axios.post('/api/travelbook/login', { email, password }).then((res) => {
             this.props.setUser(res.data);
+            console.log(res.data)
+        }).catch(err => {
+            console.log('axios not working ', err)
         })
+       
     }
 
 
 
     render(){
         const { email, password } = this.state;
-        const { user } = this.props;
+        const { user } = this.props.userReducer;
+
         return (
-            <div> 
+            <div className="signin-container"> 
                 {!user ? (
-                    <div>
-                        <div>
-                            email: {" "}
+                    <form className="signin-form">
+                       <h1 className="signin-title">SignIn</h1>
+                        <div >
                             <input
-                            onChange={e => 
+                             placeholder="email"
+                            onChange={(e) => 
                                 this.accountHandler(e.target.name, e.target.value)
                             }
+                            type="email"
                             value={email}
                             name="email"
                             />
                         </div>
                         <div>
-                            password: {" "}
                             <input
-                            onChange={e => 
+                            placeholder="password"
+                            onChange={(e) => 
                                 this.accountHandler(e.target.name, e.target.value)
+
                             }
+                            type="current-password"
                             value={password}
                             name="password"
                             />
                         </div>
                         <div>
-                            <button onClick={this.login}>SignIn</button>
+                            
+                            <button className="signin-button" onClick={this.login}>SignIn</button>
+                           
                         </div>
-                    </div>
-
-                ) : (
-                    <div>Hello User</div>
-                    
-                    )}
+                    </form>
+                  
+                     ) : (
+                        <div className="Warning">Hello User</div>
+                    )
+                }
             </div>
+            
         )
+     
     }
 }
 
@@ -82,4 +98,3 @@ const invokedConnect = connect(
     mapDispatchToProps 
 )
 export default invokedConnect(SignIn)
-

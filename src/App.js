@@ -23,13 +23,12 @@ class App extends Component {
 
 
 render(){
-    const { user } = this.props;
+    const { user } = this.props.userReducer;
     return (
 
     <div className="App" >
 
         {!user ? (
-       
             <ul>
                 <li><Link to="/" style={{ color: 'white', textDecoration: 'none'}}  >Travel Book</Link></li>
                 <li><Link to="/signin" style={{ color: 'white', textDecoration: 'none'}}  >SignIn</Link></li>
@@ -41,7 +40,8 @@ render(){
                 <li><Link to="/dashboard" style={{ color: 'white', textDecoration: 'none'}} >Dashboard</Link></li>
                 <button onClick={this.logout}>Logout</button>
             </ul>   
-            )}
+            )
+        }
        
             <Switch>
                 <Route path="/"  exact strict component={TravelBook} />
@@ -71,5 +71,6 @@ const invokedConnect = connect(
     mapStateToProps,
     mapDispatchToProps
 )
+
 
 export default invokedConnect(App); 

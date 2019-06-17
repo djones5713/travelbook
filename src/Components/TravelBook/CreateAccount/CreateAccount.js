@@ -35,14 +35,17 @@ class CreateAccount extends Component {
 
     render(){
         const { username, email, password } = this.state;
-        const { user } = this.props;
+        const { user } = this.props.userReducer;
+        console.log(this.props, "USER")
         return (
-            <div> 
+            <div className="signin-container"> 
                 {!user ? (
-                    <div>
+                    <div className="signin-form">
+                        <h1 className="signin-title">Create Account</h1>
                         <div>
-                            username: {" "}
+                           
                             <input
+                            placeholder="username"
                             onChange={e => 
                                 this.accountHandler(e.target.name, e.target.value)
                             }
@@ -52,8 +55,8 @@ class CreateAccount extends Component {
                         </div>
                 
                         <div>
-                            email: {" "}
                             <input
+                            placeholder="email"
                             onChange={e => 
                                 this.accountHandler(e.target.name, e.target.value)
                             }
@@ -62,8 +65,8 @@ class CreateAccount extends Component {
                             />
                         </div>
                         <div>
-                            password: {" "}
                             <input
+                            placeholder="password"
                             onChange={e => 
                                 this.accountHandler(e.target.name, e.target.value)
                             }
@@ -72,7 +75,7 @@ class CreateAccount extends Component {
                             />
                         </div>
                         <div>
-                            <button onClick={this.createAccount}>Create Account</button>
+                            <button className="signin-button" onClick={this.createAccount}>Create Account</button>
                         </div>
                     </div>
 

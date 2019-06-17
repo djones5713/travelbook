@@ -2,20 +2,25 @@
   margin: 0;
   background-color: #FCFAF7;
 }
+
 ul {
- position: absolute;
-  top: 0;
-  left: 0;
-  right:0;
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  padding: 20px;
-  font-weight: 600;
+  position: absolute;
+   top: 0;
+   left: 0;
+   right:0;
+   list-style-type: none;
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+   padding: 20px;
+   font-weight: 600;
+ 
+ }
+ 
+ li {
+   padding: 25px;
+ }
 
-}
+ 
 
-li {
-  padding: 25px;
-}
+ 

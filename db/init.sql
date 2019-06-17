@@ -81,3 +81,27 @@ values
 ('North America','Dominican Republic','Los Haitises National Park','https://i.imgur.com/9s9iczk.jpg','Los Haitises National Park is a national park located on the remote northeast coast of the Dominican Republic that was established in 1976. It consists of a limestone karst plateau with conical hills, sinkholes and caverns, and there is a large area of mangrove forest on the coast.')
 ('North America','United States','Saint Thomas','https://i.imgur.com/qnjlqNc.jpg','St. Thomas is the gateway isle of the U.S. Virgin Islands in the Caribbean. It is known for its beaches and snorkeling spots. Territorial capital Charlotte Amalie, founded by the Danish in the 1600s, is a busy cruise-ship port. Historic buildings include a 1679 watchtower called Blackbeard’s Castle, in reference to the area’s pirate history. On the harbor, 17th-century Fort Christian is now a local-history museum.')
 ('North America','Cuba','Viñales Valley','https://i.imgur.com/c1Lbjpe.jpg','Viñales Valley is a karstic depression in Cuba. The valley has an area of 132 km² and is located in the Sierra de los Órganos mountains, just north of Viñales in the Pinar del Río Province')
+
+
+drop table if exists users_destinations
+
+create table users_destinations(
+    id serial primary key,
+    user_id integer not null,
+    destination text not null,
+    date varchar(40) not null,
+    destination_id integer,
+    foreign key (destination_id) references destinations(destination_id)
+);
+
+ 
+
+insert into users_destinations( user_id, destination, date, destination_id )
+values
+(4,'Viñales Valley','2019-08-05', 1)
+
+
+select * from users_destinations
+join destinations
+on destinations.destination_id = users_destinations.destination_id
+where users_destinations.user_id = $1;

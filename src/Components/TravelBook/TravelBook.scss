@@ -1,7 +1,7 @@
 $buttonColor: orange;
 $titleSize: 30px;
-$cardHeight: 240px;
-$cardWidth: 240px;
+$cardHeight: 260px;
+$cardWidth: 260px;
 
 .header-img{
     width: 100vw;
@@ -22,7 +22,6 @@ $cardWidth: 240px;
 }
 
 .section-container h3{
-    text-transform: uppercase;
     text-align: center;
     
 }
@@ -33,12 +32,11 @@ $cardWidth: 240px;
 
 .search-bar input, button {
     height: 30px;
-    text-transform: uppercase;
     text-align: center;
     margin: 15px;
 }
 .search-bar input {
-    width: 400px;
+    width: 300px;
 }
 
 .search-bar button {
@@ -71,17 +69,36 @@ $cardWidth: 240px;
     margin-bottom: 60px;
 }
 
+.container {
+    margin :0 auto;
+    width: 860px;
+    height: 1200ox;
+    display: flex;
+    flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+}
+
 .popular-box{ 
+width: $cardWidth;
    display: flex;
    flex-direction: column;
    justify-content: center;
    margin-bottom: 40px;
-  
+}
+
+.photo-box {
+    border: .2px solid white;
+    width: $cardWidth;
+    height: $cardHeight;
 }
 
 .card {
     height: $cardHeight;
     width: $cardWidth;
+    border-radius: 15px 1px 1px 1px;
    
 
 }
@@ -94,23 +111,26 @@ $cardWidth: 240px;
 
 .card-button {
     background-color: $buttonColor;
-    border-radius: 20px;
-    width: 70px;
-    color: white;
+    border-radius: 20px 1px 1px 20px;
+    border: 1px solid $buttonColor;
+    width: 90px;
+    position: absolute;
+    color:white;
     font-weight: 800;
+    left: 135px;
+    
+    
+    
 }
 
 .card-info {
    border: 1px solid white;
    background-color: white;
-   width: 330px;
-   height: 232px;
+   width: 200px;
+   height: 130px;
    padding-top: 5px;
    padding-left: 20px;
    padding-right: 20px;
 }
 
 
-.card-p {
-    font-size: 12px;
-}

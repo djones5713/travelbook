@@ -1,15 +1,27 @@
 import React from 'react';
-// import { connect } from 'react-redux';
-// import axios from 'axios';
+import { connect } from 'react-redux';
+// import { setUserDestination }
 import './Explore.scss';
 
 
-function Explore () {
+function Explore (props) {
+  console.log(props)
   return <div>Explore</div>
 
 }
-export default Explore
+const mapStateToProps = (reduxState) => {
+    return reduxState
+}
 
+const invokedConnect = connect(
+    mapStateToProps,
+    null
+ 
+)
+export default invokedConnect(Explore)
+
+
+    
 
 // / const { REACT_APP_API_KEY } = process.env
 

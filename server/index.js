@@ -7,9 +7,9 @@ const massive = require('massive');
 const checkSession = require('./middlewares/checkSession')
 
 
-const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, REACT_APP_API_KEY } = process.env;
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 const { createAccount, login, userInfo, logout } = require('./controller/authController');
-const {  getDestinations} = require('./controller/destinationsController');
+const {  getDestinations, createDestination,  searchDestinations, getUserDestination,  updateDestination, deleteDestination} = require('./controller/destinationsController');
 
 // Middleware 
 app.use(express.json())
@@ -41,8 +41,21 @@ app.get('/api/travelbook/logout', logout)
 
 // Explore Endpoints
 app.get('/api/travelbook/destinations', getDestinations)
+app.get('/api/travelbook/destinations/:region/:country',  searchDestinations)
+app.post('/api/travelbook/destination', createDestination)
 
-const port = SERVER_PORT || 4000
+// User Destination Endpoints 
+app.get('/api/travelbook/user-destinations', getUserDestination)
+app.put('/api/travelbook/user-destinations/:id', updateDestination)
+
+//NOTE:http://localhost:3001/api/travelbook/user-destinations/4?date=2019-08-10
+
+
+app.delete('/api/travelbook/user-destinations/:id', deleteDestination)
+
+//NOTE:http://localhost:3001/api/travelbook/user-destinations/2
+
+const port = SERVER_PORT || 3001
 
 app.listen(port, () => {
     console.log(`port is running on ${port}`)
