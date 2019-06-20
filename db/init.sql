@@ -84,23 +84,17 @@ values
 
 
 drop table if exists users_destinations
--- ADMIN USE
--- LIST OF ALL USERS WHO HAVE AN ACCOUNT WITH THEIR DESTINATIONS LIST
 create table users_destinations(
     id serial primary key,
     user_id integer not null,
     date varchar(40) not null,
-    foreign key (destination_id) references destinations(destination_id)
+    destination_id integer references destinations(destination_id)
 );
 
 
-
---UNQUIE USER LIST AND THEIR  SPECFIC DESTINATIONS 
- create table mylist(
-   foreign key (destination_id) references destinations(destination_id)
-   foreign key (user_id ) references users(user_id)
-   
- )
+select * from users_destinations
+join destinations
+on destinations.destination_id = users_destinations.destination_id
 
 
 insert into users_destinations( user_id, date, destination_id )
@@ -108,7 +102,3 @@ values
 (4,'2019-08-05', 1)
 
 
-select * from users_destinations
-join destinations
-on destinations.destination_id = users_destinations.destination_id
-where users_destinations.user_id = $1;

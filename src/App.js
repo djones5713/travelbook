@@ -3,44 +3,39 @@ import axios from 'axios';
 import { Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from '../src/ducks/userReducer';
+import { setToggle } from '../src/ducks/toggleReducer';
 import TravelBook from './Components/TravelBook/TravelBook';
 import About from './Components/TravelBook/About/About';
 import SignIn from './Components/TravelBook/SignIn/SignIn';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Explore from './Components/Explore/Explore';
 import CreateAccount from './Components/TravelBook/CreateAccount/CreateAccount';
-
 import './App.scss';
 
 
 
 class App extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            toggle: false
-        }
-    }
+    
 
+    
     logout = () => {
         axios.get('/api/travelbook/logout').then(res => {
             this.props.setUser(null);
-            this.setState({
-                toggle: true
-            })
         })
     }
   
-  
 
 render(){
-    const { user, toggle } = this.props.userReducer;
+    const { user } = this.props.userReducer;
+    // const { toggle } = this.props.toggleReducer;
     console.log(user)
+    console.log(this.props)
+    
     return (
-
+       
     <div className="App" >
 
-        {!toggle ? (
+        {!user ?(
             <ul>
                 <li><Link to="/" style={{ color: 'white', textDecoration: 'none'}}  >Travel Book</Link></li>
                 <li><Link to="/signin" style={{ color: 'white', textDecoration: 'none'}}  >SignIn</Link></li>
@@ -79,7 +74,8 @@ const mapStateToProps = (reduxState) => {
 }
 
 const mapDispatchToProps = {
-    setUser
+    setUser,
+    setToggle
 }
 
 const invokedConnect = connect(

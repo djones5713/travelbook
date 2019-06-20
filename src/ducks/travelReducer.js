@@ -21,12 +21,12 @@ export default function reducer(state = initalState, action){
         case ADD_LIST:
             return {
                 ...state,
-                userList: [...state.userList, action.payload]
+                userList: action.payload
             }
         case REMOVE_PLACE:
             return {
                 ...state,
-                userList: [...state.userList, action.payload]
+                userList:  action.payload
             }
         default:
             return state;

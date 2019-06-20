@@ -35,10 +35,10 @@ module.exports = {
     },
     addDestination: (req, res) => {
       const db = req.app.get('db')
-      const { user_id, destination_id, country, image_url } = req.body
+      const { user_id, destination_id } = req.body
       console.log(req.body)
       const date = 'date'
-      db.add_destination( user_id, date, destination_id, country, image_url ).then(data => {
+      db.add_destination( [user_id, date, destination_id]).then(data => {
         console.log('hit')
         res.status(200).send(data)
       }).catch(error => {
@@ -74,9 +74,10 @@ module.exports = {
 
     deleteDestination: (req, res) => {
       const db = req.app.get('db');
-      const { id } = req.params;
+      const { id, user_id } = req.params;
       console.log(id)
-      db.delete_user_destination(id).then(data => {
+      db.delete_user_destination([id, user_id]).then(data => {
+        console.log(data, "user list")
         res.status(200).send(data)
       })
       .catch(err => {

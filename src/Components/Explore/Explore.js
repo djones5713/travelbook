@@ -1,7 +1,8 @@
 import React, { Component }  from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { setToggle } from '../../ducks/toggleReducer';
+import { setUser } from '../../ducks/userReducer';
 import { allDestinations, addToList  } from '../../ducks/travelReducer';
 import HillSide from '../../images/HillSide.jpeg';
 import './Explore.scss';
@@ -15,9 +16,10 @@ class Explore extends Component {
      }
  }
 
- componentDidMount(){
-    this.getData()
-}
+//  componentDidMount(){
+//     this.getData()
+//     this.addDestination() 
+// }
 
 handleChange(value){
     this.setState({
@@ -44,20 +46,20 @@ addDestination = (destination_id, country, image_url) => {
 
 getData = () => {
     const { userInput } = this.state
-    // console.log(this.state.option)
-    // console.log(userInput)
+    console.log(this.state.option)
+    console.log(userInput)
     axios.get(`/api/travelbook/destinations/${this.state.option}/${userInput}`)
     .then(res => {
-        // console.log('got response')
+        console.log('got response')
        this.props.allDestinations(res.data)
        console.log(res.data)
-
    })
 
 }
+
  
 render(){
-    console.log(this.props)
+
     const mappedUserDestination = this.props.travelReducer.Destinations.map((place, index) => (
        
        
@@ -92,6 +94,7 @@ render(){
                             option: e.target.value
                         })
                     }}>
+                         <option value="">Select Continent</option>
                         <option value="North America">North America</option>
                         <option value="South America">South America</option>
                         <option value="Europe">Europe</option>
@@ -100,9 +103,9 @@ render(){
                     </select>
 
                     <input placeholder="Country" onChange={(e) => this.handleChange(e.target.value)}/>
-                        <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>
+                       
                             <button id="search" onClick={this.getData}>Search</button>
-                        </Link>
+                     
                 </div>
         
             </div>
@@ -122,7 +125,9 @@ const mapStateToProps = (reduxState) => {
 }
 const mapDispatchToProps = {
     allDestinations,
-    addToList 
+    addToList,
+    setToggle,
+    setUser 
 }
 
 const invokedConnect = connect(

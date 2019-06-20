@@ -66,6 +66,7 @@ class TravelBook extends Component {
                         option: e.target.value
                     })
                 }}>
+                    <option value="">Select Continent</option>
                     <option value="North America">North America</option>
                     <option value="South America">South America</option>
                     <option value="Europe">Europe</option>

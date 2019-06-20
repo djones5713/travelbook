@@ -12,14 +12,15 @@ super(props)
   }
 }
 
-
 deleteDestination = (id) => {
+
+    const { user_id } = this.props.userReducer.user
     console.log(id)
     console.log('hit')
-    axios.delete(`/api/travelbook/user-destinations/${id}`, {id})
+    axios.delete(`/api/travelbook/user-destinations/${id}/${user_id}`)
     .then(res => {
         console.log('hit')
-        this.props.setUser(res.data)
+        console.log(this.props)
         this.props.removeFromList(res.data)
         console.log('HIT',res.data)
     })
@@ -42,12 +43,12 @@ render(){
     console.log(this.props.userReducer, 'Hi I am user')
     console.log(this.props.travelReducer.userList)
     const {userList} = this.props.travelReducer
-    const mappedUserDestination = userList[0].map((list, index) => {
+    const mappedUserDestination = userList.map((list, index) => {
         return(
             <div key={index}>
-                 <div>{list.data}</div>
+                 <p>{list.date}</p>
                  <div>{list.destination_id}</div>
-                 {/* <img src={list.image_url} alt="location"/> */}
+                 <img src={list.image_url} alt="location"/>
                  <button onClick={() => this.deleteDestination(list.id)}>Delete</button>
 
             </div>

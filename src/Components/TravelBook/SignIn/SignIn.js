@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setUser } from '../../../ducks/userReducer';
+import { setToggle } from '../../../ducks/toggleReducer';
 import './SignIn.scss';
 
 
@@ -14,6 +15,10 @@ class SignIn extends Component {
             password: ""
         }
     }
+
+componentDidMount(){
+    this.login()
+}
 
     accountHandler = (prop, value) =>{
         console.log('VALUE')
@@ -40,7 +45,6 @@ class SignIn extends Component {
     render(){
         const { email, password } = this.state;
         const { user } = this.props.userReducer;
-
         return (
        <div className="overlay">
             <div className="signin-container"> 
@@ -94,7 +98,8 @@ const mapStateToProps = (reduxState) => {
 }
 
 const mapDispatchToProps = {
-    setUser
+    setUser,
+    setToggle
 }
 const invokedConnect = connect(
     mapStateToProps,

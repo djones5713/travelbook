@@ -53,7 +53,7 @@ app.post('/api/travelbook/user-destinations-list',  addDestination)
 
 
 
-app.delete('/api/travelbook/user-destinations/:id', deleteDestination)
+app.delete('/api/travelbook/user-destinations/:id/:user_id', deleteDestination)
 
 //NOTE:http://localhost:3001/api/travelbook/user-destinations/2
 
