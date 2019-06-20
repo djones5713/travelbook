@@ -1,24 +1,137 @@
-import React from 'react';
-import { connect } from 'react-redux';
-// import { setUserDestination }
+import React, { Component }  from 'react';
+import {connect} from 'react-redux';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { allDestinations, addToList  } from '../../ducks/travelReducer';
+import HillSide from '../../images/HillSide.jpeg';
 import './Explore.scss';
 
 
-function Explore (props) {
-  console.log(props)
-  return <div>Explore</div>
+class Explore extends Component {
+ constructor(props){
+     super(props)
+     this.state = {
+     
+     }
+ }
+
+ componentDidMount(){
+    this.getData()
+}
+
+handleChange(value){
+    this.setState({
+        userInput: value
+
+    })
+}
+
+addDestination = (destination_id, country, image_url) => {
+    
+    console.log(this.props)
+    const { user_id } = this.props.userReducer.user
+    console.log(user_id)
+    console.log(destination_id)
+    axios.post('/api/travelbook/user-destinations-list', {destination_id, user_id, country, image_url})
+    .then(res =>{
+        this.props.addToList(res.data)
+        console.log('DATA',res.data)
+    })
+}
+
+
+
+
+getData = () => {
+    const { userInput } = this.state
+    // console.log(this.state.option)
+    // console.log(userInput)
+    axios.get(`/api/travelbook/destinations/${this.state.option}/${userInput}`)
+    .then(res => {
+        // console.log('got response')
+       this.props.allDestinations(res.data)
+       console.log(res.data)
+
+   })
 
 }
+ 
+render(){
+    console.log(this.props)
+    const mappedUserDestination = this.props.travelReducer.Destinations.map((place, index) => (
+       
+       
+        // console.log(place),
+      <div className="red-red" key = {index}>
+      
+        <div className="info">
+            <img src={place.image_url} alt="location"/>
+            <button onClick={()=> this.addDestination(place.destination_id)}>Add</button>
+           
+            <div>
+                <p>{place.country}</p>
+                <p>{place.destination}</p>
+            </div>
+        </div>
+    </div>
+    ))
+
+    return ( 
+    <div> 
+    
+        <div className="section">
+            <img className="header-img" src={HillSide} alt="BlueOcean" />
+        
+            <div className="section-container">
+                <h3>Choose Your Destination</h3>
+                <hr/>
+                <div className="search-bar">
+                
+                    <select value={this.state.option} onChange={(e) => {
+                        this.setState({
+                            option: e.target.value
+                        })
+                    }}>
+                        <option value="North America">North America</option>
+                        <option value="South America">South America</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Africa">Africa</option>
+                    </select>
+
+                    <input placeholder="Country" onChange={(e) => this.handleChange(e.target.value)}/>
+                        <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>
+                            <button id="search" onClick={this.getData}>Search</button>
+                        </Link>
+                </div>
+        
+            </div>
+            {/* end of section container */}
+
+            <div className="red">{mappedUserDestination}</div>
+
+        </div>
+      </div>
+    )
+
+ }
+ }
+
 const mapStateToProps = (reduxState) => {
     return reduxState
+}
+const mapDispatchToProps = {
+    allDestinations,
+    addToList 
 }
 
 const invokedConnect = connect(
     mapStateToProps,
-    null
- 
+    mapDispatchToProps 
 )
-export default invokedConnect(Explore)
+    export default invokedConnect(Explore)
+
+
 
 
     

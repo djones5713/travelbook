@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from '../../../ducks/userReducer';
+import '../CreateAccount/CreateAccount.scss'
 
 
 class CreateAccount extends Component {
+    _isMounted = false;
+
     constructor(props){
         super(props)
         this.state = {
@@ -14,6 +18,10 @@ class CreateAccount extends Component {
 
         }
     }
+
+ componentDidMount(){
+     this._isMounted = true;
+ }
 
     accountHandler = (prop, value) =>{
         this.setState({
@@ -25,12 +33,16 @@ class CreateAccount extends Component {
     createAccount = () => {
         const { username, password, email } = this.state;
         axios.post('/api/travelbook/create-account', { username, password, email }).then(res => {
-       
+            if(this._isMounted){
             this.setState({ username: '', password: ''})
             this.props.setUser(res.data);
+            }
         }).catch((err) => {console.log("LOGIN", err)})
     }
-
+  
+    componentWillUnmount(){
+        this._isMounted = false;
+    }
 
 
     render(){
@@ -39,7 +51,7 @@ class CreateAccount extends Component {
         console.log(this.props, "USER")
         return (
             <div className="signin-container"> 
-                {!user ? (
+               
                     <div className="signin-form">
                         <h1 className="signin-title">Create Account</h1>
                         <div>
@@ -74,13 +86,16 @@ class CreateAccount extends Component {
                             name="password"
                             />
                         </div>
-                        <div>
-                            <button className="signin-button" onClick={this.createAccount}>Create Account</button>
-                        </div>
+                        <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>
+                            <button className="signin-button" onClick={this.createAccount}>Create Account </button>
+                        </Link>
+                        
                     </div>
 
-                ) : (
-                    <div>Hello User</div>
+                    {!user ? (
+                        <Link to="/create-account" style={{ color: 'white', textDecoration: 'none'}}></Link>
+                    ) : (
+                         <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}></Link>
                    )}
             </div>
         )

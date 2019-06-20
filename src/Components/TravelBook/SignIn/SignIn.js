@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { setUser } from '../../../ducks/userReducer';
 import './SignIn.scss';
 
@@ -41,8 +42,9 @@ class SignIn extends Component {
         const { user } = this.props.userReducer;
 
         return (
+       <div className="overlay">
             <div className="signin-container"> 
-                {!user ? (
+               
                     <form className="signin-form">
                        <h1 className="signin-title">SignIn</h1>
                         <div >
@@ -69,18 +71,19 @@ class SignIn extends Component {
                             />
                         </div>
                         <div>
-                            
-                            <button className="signin-button" onClick={this.login}>SignIn</button>
-                           
+                            <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>
+                                <button className="signin-button" onClick={this.login}>SignIn</button>
+                            </Link>
                         </div>
                     </form>
-                  
-                     ) : (
-                        <div className="Warning">Hello User</div>
-                    )
-                }
+                    {!user ? (
+                        <Link to="/signin" style={{ color: 'white', textDecoration: 'none'}}></Link>
+                    ) : (
+                        <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}></Link>
+                        )
+                    }
             </div>
-            
+            </div>
         )
      
     }

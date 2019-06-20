@@ -2,8 +2,10 @@
 
 module.exports = {
     getDestinations:(req, res) => {
+      // console.log('data0',data)
       const db = req.app.get('db')
       db.get_all_destinations().then(data => {
+      // console.log('data1',data)
         res.status(200).send(data)
       })
     },
@@ -31,11 +33,29 @@ module.exports = {
       })
 
     },
+    addDestination: (req, res) => {
+      const db = req.app.get('db')
+      const { user_id, destination_id, country, image_url } = req.body
+      console.log(req.body)
+      const date = 'date'
+      db.add_destination( user_id, date, destination_id, country, image_url ).then(data => {
+        console.log('hit')
+        res.status(200).send(data)
+      }).catch(error => {
+        console.log('issue')
+        res.status(500).send(error, "ADD ISSUE");
+      })
+    },
 
     getUserDestination:(req, res) => {
+      const { user_id} = req.body
+      console.log(req.body)
       const db = req.app.get('db')
-      db.get_user_destinations().then(data => {
+      db.get_user_destinations(user_id).then(data => {
         res.status(200).send(data)
+      }).catch(error => {
+        console.log('issue')
+        res.status(500).send(error, "GET USER ISSUE");
       })
     },
 
@@ -54,10 +74,10 @@ module.exports = {
 
     deleteDestination: (req, res) => {
       const db = req.app.get('db');
-      const { params } = req;
-      db.delete_user_destination(params.id).then((data) => {
-      console.log('HIT3')
-      res.status(200).send(data)
+      const { id } = req.params;
+      console.log(id)
+      db.delete_user_destination(id).then(data => {
+        res.status(200).send(data)
       })
       .catch(err => {
         res.status(500).send({err: "DELETE ISSUE"})

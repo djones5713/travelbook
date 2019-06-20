@@ -1,0 +1,34 @@
+
+.red {
+    margin-top: 200px;
+    width: 1300px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+}
+
+
+.red-red {
+ padding-bottom: 30px;
+}
+
+.red img {
+    width: 280px;
+    height: 300px;
+}
+.info {
+    border: 1px black solid;
+    background-color: yellow;
+    width: 300px;
+    font-size: 12px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    letter-spacing: .7px;
+
+}
+p {
+    background-color: white;
+}

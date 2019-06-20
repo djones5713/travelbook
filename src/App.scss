@@ -1,6 +1,7 @@
 .App {
   margin: 0;
   background-color: #FCFAF7;
+
 }
 
 ul {
@@ -12,7 +13,7 @@ ul {
    display: flex;
    flex-direction: row;
    justify-content: flex-end;
-   padding: 20px;
+   padding: 25px;
    font-weight: 600;
  
  }
@@ -23,4 +24,13 @@ ul {
 
  
 
- 
+ .logout {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: 1px white solid;
+  padding-left: 35px;
+  padding-right: 35px;
+  font-weight: 600;
+  font-size: 15px;
+  color: white;
+ }

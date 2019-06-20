@@ -8,27 +8,39 @@ import About from './Components/TravelBook/About/About';
 import SignIn from './Components/TravelBook/SignIn/SignIn';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Explore from './Components/Explore/Explore';
-import CreateAccount from './Components/TravelBook/CreateAccount/CreateAccount'
+import CreateAccount from './Components/TravelBook/CreateAccount/CreateAccount';
+
 import './App.scss';
 
 
 
 class App extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            toggle: false
+        }
+    }
 
     logout = () => {
         axios.get('/api/travelbook/logout').then(res => {
             this.props.setUser(null);
+            this.setState({
+                toggle: true
+            })
         })
     }
-
+  
+  
 
 render(){
-    const { user } = this.props.userReducer;
+    const { user, toggle } = this.props.userReducer;
+    console.log(user)
     return (
 
     <div className="App" >
 
-        {!user ? (
+        {!toggle ? (
             <ul>
                 <li><Link to="/" style={{ color: 'white', textDecoration: 'none'}}  >Travel Book</Link></li>
                 <li><Link to="/signin" style={{ color: 'white', textDecoration: 'none'}}  >SignIn</Link></li>
@@ -38,11 +50,14 @@ render(){
             <ul>
                 <li><Link to="/explore" style={{ color: 'white', textDecoration: 'none'}} >Explore</Link></li>
                 <li><Link to="/dashboard" style={{ color: 'white', textDecoration: 'none'}} >Dashboard</Link></li>
-                <button onClick={this.logout}>Logout</button>
+                <Link  to="/" >
+                <button className="logout" onClick={this.logout}>Logout</button>
+                </Link>
             </ul>   
             )
         }
-       
+        
+
             <Switch>
                 <Route path="/"  exact strict component={TravelBook} />
                 <Route path="/about" exact strict component={About} />
@@ -53,7 +68,7 @@ render(){
         
             </Switch>
         
-
+       
     </div>
 
     )}

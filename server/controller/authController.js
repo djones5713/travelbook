@@ -52,7 +52,8 @@ module.exports = {
 
                     } else {
                         console.log('request success')
-                    req.session.user = { username: user.username };
+                    req.session.user = { username: user.username, user_id: user.user_id };
+                    console.log(user)
                     res.status(200).send(req.session.user);
                     
                     }

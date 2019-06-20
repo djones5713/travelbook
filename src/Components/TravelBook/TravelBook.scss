@@ -25,12 +25,17 @@ $cardWidth: 260px;
     text-align: center;
     
 }
+
+.search-bar select {
+ width: 150px;
+}
+
 .search-bar {
    padding: 20px;
  
 }
 
-.search-bar input, button {
+.search-bar input, button, select {
     height: 30px;
     text-align: center;
     margin: 15px;
@@ -40,7 +45,7 @@ $cardWidth: 260px;
 }
 
 .search-bar button {
-    width: 200px;
+    width: 150px;
 }
 
 .search-bar input {
@@ -55,7 +60,7 @@ $cardWidth: 260px;
 }
 
 .popular-section {
-    margin-top: 175px;
+    margin-top: 145px;
     text-align: center;
     font-size: $titleSize;
     text-transform: uppercase;
@@ -69,68 +74,79 @@ $cardWidth: 260px;
     margin-bottom: 60px;
 }
 
-.container {
-    margin :0 auto;
-    width: 860px;
-    height: 1200ox;
+.popular-box{ 
     display: flex;
     flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	align-items: stretch;
-	align-content: stretch;
-}
-
-.popular-box{ 
-width: $cardWidth;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   margin-bottom: 40px;
-}
-
-.photo-box {
-    border: .2px solid white;
-    width: $cardWidth;
-    height: $cardHeight;
-}
-
-.card {
-    height: $cardHeight;
-    width: $cardWidth;
-    border-radius: 15px 1px 1px 1px;
+    justify-content: center;
+    padding: 30px;
+  
    
+ }
 
+ .popular-box-2{ 
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+  
+   
+ }
+
+ .card {
+     width: 320px;
+     height: 330px;
+ }
+
+ .card-2 {
+    width: 280px;
+    height: 250px;
+  
 }
 
-.card-name {
+
+ .card-info {
+     background-color: white;
+     width: 300px;
+     font-size: 12px;
+     padding-top: 10px;
+     padding-left: 15px;
+     padding-right: 15px;
+     letter-spacing: .7px;
+
+ }
+
+ .card-info-2 {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 160px;
+    width: 250px;
+    font-size: 12px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    letter-spacing: .7px;
+}
+
+
+ .card-name {
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    font-size: 20px;
+ }
+
+ .card-subtitle{
    text-transform: uppercase;
-   font-size: 15px;
 
-}
+ }
 
-.card-button {
+
+ .card-button {
     background-color: $buttonColor;
-    border-radius: 20px 1px 1px 20px;
-    border: 1px solid $buttonColor;
-    width: 90px;
-    position: absolute;
-    color:white;
+    border-radius: 20px;
+    width: 200px;
+    color: white;
     font-weight: 800;
-    left: 135px;
-    
-    
-    
+    margin-top: 5px;
+    margin-left: 0;
+
 }
-
-.card-info {
-   border: 1px solid white;
-   background-color: white;
-   width: 200px;
-   height: 130px;
-   padding-top: 5px;
-   padding-left: 20px;
-   padding-right: 20px;
-}
-
-

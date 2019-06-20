@@ -84,21 +84,28 @@ values
 
 
 drop table if exists users_destinations
-
+-- ADMIN USE
+-- LIST OF ALL USERS WHO HAVE AN ACCOUNT WITH THEIR DESTINATIONS LIST
 create table users_destinations(
     id serial primary key,
     user_id integer not null,
-    destination text not null,
     date varchar(40) not null,
-    destination_id integer,
     foreign key (destination_id) references destinations(destination_id)
 );
 
- 
 
-insert into users_destinations( user_id, destination, date, destination_id )
+
+--UNQUIE USER LIST AND THEIR  SPECFIC DESTINATIONS 
+ create table mylist(
+   foreign key (destination_id) references destinations(destination_id)
+   foreign key (user_id ) references users(user_id)
+   
+ )
+
+
+insert into users_destinations( user_id, date, destination_id )
 values
-(4,'Viñales Valley','2019-08-05', 1)
+(4,'2019-08-05', 1)
 
 
 select * from users_destinations
