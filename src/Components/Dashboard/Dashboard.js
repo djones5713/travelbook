@@ -1,15 +1,36 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { removeFromList } from '../../ducks/travelReducer';
+import { removeFromList, updateList } from '../../ducks/travelReducer';
 import { setUser } from '../../ducks/userReducer';
 
 class  Dashboard extends Component{
 constructor(props){
 super(props)
   this.state = {
-     
+     Date: null
   }
+}
+
+handleChange(value){
+    this.setState({
+        Date: value
+
+    })
+}
+
+
+updateDestination = (id, date) => {
+    const { user_id } = this.props.userReducer.user
+    console.log(id)
+    console.log('hit')
+    axios.put(`/api/travelbook/user-destinations/${id}/${user_id}`, { date })
+    .then(res => {
+        console.log('hit')
+        console.log(this.props)
+        this.props.updateList(res.data)
+        console.log('HIT',res.data)
+    })
 }
 
 deleteDestination = (id) => {
@@ -43,10 +64,12 @@ render(){
     console.log(this.props.userReducer, 'Hi I am user')
     console.log(this.props.travelReducer.userList)
     const {userList} = this.props.travelReducer
+    const { id, date } = this.props.travelReducer
     const mappedUserDestination = userList.map((list, index) => {
         return(
             <div key={index}>
-                 <p>{list.date}</p>
+                 <input onChange={(e) =>this.handleChange(e.target.value)}/>
+                 <button onClick={this.updateDestination(id, date)}>Submit</button>
                  <div>{list.destination_id}</div>
                  <img src={list.image_url} alt="location"/>
                  <button onClick={() => this.deleteDestination(list.id)}>Delete</button>
@@ -67,7 +90,8 @@ const mapStateToProps = (reduxState) => {
 
 const mapDispatchToProps = {
   removeFromList,
-  setUser
+  setUser,
+  updateList 
 }
 
 const invokedConnect = connect(

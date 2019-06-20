@@ -61,9 +61,12 @@ module.exports = {
 
     updateDestination:(req, res) => {
       const db = req.app.get('db')
-      const { params, query } = req;
+      const {id , user_id} = req.param;
+      const { date } = req.query;
+
+
       console.log('HIT2')
-      db.update_user_destination([params.id, query.date]).then((data) => {
+      db.update_user_destination([id, user_id, date]).then((data) => {
       console.log('HIT3')
       res.status(200).send(data)
       })
@@ -77,7 +80,7 @@ module.exports = {
       const { id, user_id } = req.params;
       console.log(id)
       db.delete_user_destination([id, user_id]).then(data => {
-        console.log(data, "user list")
+        console.log(data, "user")
         res.status(200).send(data)
       })
       .catch(err => {

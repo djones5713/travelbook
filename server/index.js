@@ -46,13 +46,9 @@ app.get('/api/travelbook/destinations/:region/:country',  searchDestinations)
 
 // User Destination Endpoints 
 app.get('/api/travelbook/user-destinations', getUserDestination)
-app.put('/api/travelbook/user-destinations/:id', updateDestination)
+app.put('/api/travelbook/user-destinations/:id/:user_id/date', updateDestination)
 //NOTE:http://localhost:3001/api/travelbook/user-destinations/4?date=2019-08-10
 app.post('/api/travelbook/user-destinations-list',  addDestination)
-
-
-
-
 app.delete('/api/travelbook/user-destinations/:id/:user_id', deleteDestination)
 
 //NOTE:http://localhost:3001/api/travelbook/user-destinations/2
