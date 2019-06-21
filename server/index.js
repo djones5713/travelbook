@@ -9,7 +9,7 @@ const checkSession = require('./middlewares/checkSession')
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 const { createAccount, login, userInfo, logout } = require('./controller/authController');
-const {  getDestinations, createDestination,  searchDestinations, getUserDestination,  updateDestination,  addDestination, deleteDestination} = require('./controller/destinationsController');
+const {  getDestinations, searchDestinations, getUserDestination,  updateDestination,  addDestination, deleteDestination} = require('./controller/destinationsController');
 
 // Middleware 
 app.use(express.json())
@@ -46,7 +46,7 @@ app.get('/api/travelbook/destinations/:region/:country',  searchDestinations)
 
 // User Destination Endpoints 
 app.get('/api/travelbook/user-destinations', getUserDestination)
-app.put('/api/travelbook/user-destinations/:id/:user_id/date', updateDestination)
+app.put('/api/travelbook/user-destinations/:id/:user_id', updateDestination)
 //NOTE:http://localhost:3001/api/travelbook/user-destinations/4?date=2019-08-10
 app.post('/api/travelbook/user-destinations-list',  addDestination)
 app.delete('/api/travelbook/user-destinations/:id/:user_id', deleteDestination)

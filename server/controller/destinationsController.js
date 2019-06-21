@@ -50,6 +50,7 @@ module.exports = {
     getUserDestination:(req, res) => {
       const { user_id} = req.body
       console.log(req.body)
+      console.log(user_id)
       const db = req.app.get('db')
       db.get_user_destinations(user_id).then(data => {
         res.status(200).send(data)
@@ -60,14 +61,13 @@ module.exports = {
     },
 
     updateDestination:(req, res) => {
-      const db = req.app.get('db')
-      const {id , user_id} = req.param;
-      const { date } = req.query;
-
-
-      console.log('HIT2')
-      db.update_user_destination([id, user_id, date]).then((data) => {
-      console.log('HIT3')
+      console.log("Hi Destiny!!", req.params, req.query)
+      const db = req.app.get('db');
+      const { id, user_id } = req.params;
+      const { date } = req.query
+      console.log(id, date, 'INFO')
+      db.update_user_destination([id, user_id, date]).then(data => {
+      console.log(data, 'INFO DATA')
       res.status(200).send(data)
       })
       .catch(error => {

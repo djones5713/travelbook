@@ -65,9 +65,11 @@ export function removeFromList(list){
         payload: list
     }
 }
+
 export function updateList(list){
+    console.log('reducer function hit', list )
     return {
-        type: REMOVE_PLACE,
+        type: UPDATE_LIST,
         payload: list
     }
 }
