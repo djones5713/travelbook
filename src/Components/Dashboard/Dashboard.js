@@ -79,6 +79,7 @@ render(){
     const mappedUserDestination = userList.map((list, index) => {
         return(
             <div key={index}>
+                <p>{list.date}</p>
                  <input onChange={(e) =>this.handleChange(e.target.value)}/>
                  <button onClick={()=> this.updateDestination(list.id, this.state.Date)}>Submit</button>
                  <div>{list.destination_id}</div>

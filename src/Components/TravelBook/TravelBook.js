@@ -7,6 +7,9 @@ import { setUser } from '../../ducks/userReducer';
 import './TravelBook.scss';
 import HillSide from '../../images/HillSide.jpeg';
 import BlueOcean from '../../images/BlueOcean.jpeg';
+import Havana from '../../images/Havana.jpeg';
+import Siargao from '../../images/Siargao.jpeg';
+import Dinant from '../../images/Dinant.jpeg';
 import Location from '../../images/Location.svg';
 
   
@@ -115,21 +118,45 @@ class TravelBook extends Component {
                 
                     <div className="card-info-2">
                             <h2 className="card-name">Norway</h2>
-                            <p className="card-subtitle"><img src={Location} alt='location'/> Norway: Bergen </p>
+                            <p className="card-subtitle"><img src={Location} alt='location'/>Bergen </p>
                                 <button className="card-button">Learn More</button>
                     </div>
                 </div>
           </div>
-          <div className="popular-box-2">
-                    <img className="card-2" src={BlueOcean} alt='location'/>
-                
-                    <div className="card-info-2">
-                            <h2 className="card-name">Norway</h2>
-                            <p className="card-subtitle"><img src={Location} alt='location'/> Norway: Bergen </p>
-                                <button className="card-button">Learn More</button>
-                    </div>
-         </div>
 
+
+         <div className="container-2">
+            <div className="popular-box-2">
+                        <img className="card-2" src={Havana} alt='location'/>
+                    
+                        <div className="card-info-2">
+                                <h2 className="card-name">Havana</h2>
+                                <p className="card-subtitle"><img src={Location} alt='location'/> Cuba </p>
+                                    <button className="card-button">Learn More</button>
+                    </div>
+            </div>
+            <div className="popular-box-2">
+                        <img className="card-2" src={Dinant} alt='location'/>
+                    
+                        <div className="card-info-2">
+                                <h2 className="card-name">Dinant</h2>
+                                <p className="card-subtitle"><img src={Location} alt='location'/> Belgium </p>
+                                    <button className="card-button">Learn More</button>
+                    </div>
+            </div>
+            <div className="popular-box-2">
+                        <img className="card-2" src={Siargao} alt='location'/>
+                    
+                        <div className="card-info-2">
+                                <h2 className="card-name">Siargao Island</h2>
+                                <p className="card-subtitle"><img src={Location} alt='location'/>  Philippines  </p>
+                                    <button className="card-button">Learn More</button>
+                    </div>
+            </div>
+        </div>
+
+        <hr className="popular-line-2"/>
+       <footer></footer>
 
     </div>
 

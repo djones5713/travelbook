@@ -1,4 +1,5 @@
 $buttonColor: orange;
+$buttonColorTwo: #1C5385;
 
 .signin-container{
     height: 100vh;
@@ -8,7 +9,7 @@ $buttonColor: orange;
 .signin-title{
 padding: 26px;
 font-size: 25px;
-text-transform: uppercase
+text-transform: uppercase;
 }
 
 .signin-form{
@@ -37,3 +38,17 @@ text-transform: uppercase
     color: white;
     font-weight: 800;
 }
+
+.create-button{
+    height: 30px;
+    text-transform: uppercase; 
+    text-align: center;
+    margin: 5px;
+    width: 300px;
+    background-color: $buttonColorTwo;
+    border-radius: 12px;
+    border-color: $buttonColorTwo;
+    color: white;
+    font-weight: 800;
+}
+

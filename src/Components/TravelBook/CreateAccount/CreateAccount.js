@@ -7,7 +7,7 @@ import '../CreateAccount/CreateAccount.scss'
 
 
 class CreateAccount extends Component {
-    _isMounted = false;
+    // _isMounted = false;
 
     constructor(props){
         super(props)
@@ -19,9 +19,10 @@ class CreateAccount extends Component {
         }
     }
 
- componentDidMount(){
-     this._isMounted = true;
- }
+    componentDidMount(){
+        this.createAccount()
+    }
+    
 
     accountHandler = (prop, value) =>{
         this.setState({
@@ -33,16 +34,13 @@ class CreateAccount extends Component {
     createAccount = () => {
         const { username, password, email } = this.state;
         axios.post('/api/travelbook/create-account', { username, password, email }).then(res => {
-            if(this._isMounted){
             this.setState({ username: '', password: ''})
             this.props.setUser(res.data);
-            }
+            
         }).catch((err) => {console.log("LOGIN", err)})
     }
   
-    componentWillUnmount(){
-        this._isMounted = false;
-    }
+
 
 
     render(){

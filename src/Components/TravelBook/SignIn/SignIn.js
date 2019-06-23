@@ -11,8 +11,8 @@ class SignIn extends Component {
     constructor(props){
         super(props)
         this.state = {
-            email: "",
-            password: ""
+            email: undefined,
+            password: undefined
         }
     }
 
@@ -75,12 +75,27 @@ componentDidMount(){
                             />
                         </div>
                         <div>
-                            <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>
+                              {!user || user === undefined ? (
+                                  <div>
+                                 <Link to="/signin" style={{ color: 'white', textDecoration: 'none'}}>
+                                  <button className="signin-button" onClick={this.login}>SignIn</button>
+                                 </Link>
+                                  
+                                  </div>
+                                )
+                                : (
+                                <div>
+                                <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>
                                 <button className="signin-button" onClick={this.login}>SignIn</button>
-                            </Link>
+                                </Link>
+                                </div>
+                               )}
+                        </div>
+                        <div>
+                                <button className="create-button">Create Account</button>
                         </div>
                     </form>
-                    {!user ? (
+                    {!user || user === undefined ? (
                         <Link to="/signin" style={{ color: 'white', textDecoration: 'none'}}></Link>
                     ) : (
                         <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}></Link>
