@@ -11,6 +11,10 @@ const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 const { createAccount, login, userInfo, logout } = require('./controller/authController');
 const {  getDestinations, searchDestinations, getUserDestination,  updateDestination,  addDestination, deleteDestination} = require('./controller/destinationsController');
 
+
+app.use( express.static( `${__dirname}/../build` ) );
+
+
 // Middleware 
 app.use(express.json())
 
@@ -58,3 +62,9 @@ const port = SERVER_PORT || 4001
 app.listen(port, () => {
     console.log(`port is running on ${port}`)
 })
+
+const path = require('path'); // Usually moved to the start of file
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});

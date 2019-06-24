@@ -7,7 +7,6 @@ import '../CreateAccount/CreateAccount.scss'
 
 
 class CreateAccount extends Component {
-    // _isMounted = false;
 
     constructor(props){
         super(props)
@@ -87,6 +86,8 @@ class CreateAccount extends Component {
                         <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>
                             <button className="signin-button" onClick={this.createAccount}>Create Account </button>
                         </Link>
+
+                        <p><a href="http://localhost:3000/signin">Do you have an account?</a></p> 
                         
                     </div>
 

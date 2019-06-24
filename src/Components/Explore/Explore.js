@@ -5,6 +5,7 @@ import { setToggle } from '../../ducks/toggleReducer';
 import { setUser } from '../../ducks/userReducer';
 import { allDestinations, addToList  } from '../../ducks/travelReducer';
 import HillSide from '../../images/HillSide.jpeg';
+import Location from '../../images/Location.svg';
 import './Explore.scss';
 
 
@@ -16,10 +17,6 @@ class Explore extends Component {
      }
  }
 
-//  componentDidMount(){
-//     this.getData()
-//     this.addDestination() 
-// }
 
 handleChange(value){
     this.setState({
@@ -67,13 +64,13 @@ render(){
       <div className="red-red" key = {index}>
       
         <div className="info">
+
             <img src={place.image_url} alt="location"/>
-            <button onClick={()=> this.addDestination(place.destination_id)}>Add</button>
-           
-            <div>
-                <p>{place.country}</p>
-                <p>{place.destination}</p>
-            </div>
+              <p className="card-name">{place.destination}</p>
+              <p className="card-subtitle">{place.country}: {place.destination}</p>
+            <button  className="card-button" onClick={()=> this.addDestination(place.destination_id)}>Add</button>
+            
+             
         </div>
     </div>
     ))
@@ -112,7 +109,7 @@ render(){
             {/* end of section container */}
 
             <div className="red">{mappedUserDestination}</div>
-
+            <footer></footer>
         </div>
       </div>
     )

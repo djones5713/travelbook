@@ -10,9 +10,13 @@ import BlueOcean from '../../images/BlueOcean.jpeg';
 import Havana from '../../images/Havana.jpeg';
 import Siargao from '../../images/Siargao.jpeg';
 import Dinant from '../../images/Dinant.jpeg';
+import Spain from '../../images/Spain.jpeg';
 import Location from '../../images/Location.svg';
 
   
+const { REACT_APP_API_KEY } = process.env;
+
+
 
 class TravelBook extends Component {
     constructor(props){
@@ -20,12 +24,14 @@ class TravelBook extends Component {
         this.state = {
            userInput: "",
            option: "",
+           spain: []
            
         }
     }
 
     componentDidMount(){
         this.getData()
+        this.getSpian()
     }
 
     handleChange(value){
@@ -50,8 +56,40 @@ class TravelBook extends Component {
 
 
 
+    getSpian = () => {
+        axios.get('https://api.sygictravelapi.com/1.1/en/places/list?parents=country:13&levels=city&limit=1',  {
+             headers: {
+            "x-api-key":  REACT_APP_API_KEY
+         }
+        }).then(res => {
+             console.log('got response')
+            this.setState({
+                spain: res.data.data.places
+            })
+            console.log(res.data.data.places)
+        })
+    }
+
+    
+
     render(){
     const { user } = this.props.userReducer;
+    console.log(this.state)
+    const mappedSpain = this.state.spain.map(place => (
+      
+        <div key={place.id}>
+              <div className="popular-box">
+              <img className="card" src={Spain} alt="spain"/>
+              <div className="card-info">
+                <h2 className="card-name">{place.name}</h2>
+                <p className="card-subtitle"><img src={Location} alt='location'/> Spain: {place.name} </p>
+                <p className="card-p"> {place.perex}</p>
+                <button className="card-button"><a href={place.url}>Learn More</a></button>
+              </div>
+              </div>
+          </div>
+
+    ))
     return (
 
         <div>
@@ -94,53 +132,39 @@ class TravelBook extends Component {
         </div>
  
         </div>
-
-      <h1 className="popular-section">Popular Destination</h1>
+       
+      <h1 className="popular-section">Popular Destinations</h1>
       <hr className="popular-line"/>
-            <div className="popular-box">
-                  <img className="card" src={BlueOcean} alt='location'/>
-               <div className="card-info">
-                     <h2 className="card-name">Norway</h2>
-                    <p className="card-subtitle"><img src={Location} alt='location'/> Norway: Bergen </p>
-
-                     <p>Norway is a Scandinavian country encompassing mountains, 
-                         glaciers and deep coastal fjords. Preserved 9th-century Viking ships are 
-                         displayed at Oslo’s Viking Ship Museum. Bergen, with colorful wooden
-                          houses, is the starting point for cruises to the dramatic Sognefjord. 
-                          Norway is also known for fishing, hiking and skiing, notably at Lillehammer’s
-                          Olympic resort.</p>
-                          <button className="card-button">Learn More</button>
-                 </div>
-         
-
+           <div className="popular-box">
+               <div> {mappedSpain}</div> 
                 <div className="popular-box-2">
                     <img className="card-2" src={BlueOcean} alt='location'/>
                 
                     <div className="card-info-2">
                             <h2 className="card-name">Norway</h2>
-                            <p className="card-subtitle"><img src={Location} alt='location'/>Bergen </p>
-                                <button className="card-button">Learn More</button>
+                            <p className="card-subtitle"><img src={Location} alt='location'/>Norway: Bergen </p>
+                            <button className="card-button">Learn More</button>
                     </div>
                 </div>
           </div>
 
 
-         <div className="container-2">
-            <div className="popular-box-2">
+          <div className="container-2">
+                <div className="popular-box-2">
                         <img className="card-2" src={Havana} alt='location'/>
-                    
-                        <div className="card-info-2">
-                                <h2 className="card-name">Havana</h2>
-                                <p className="card-subtitle"><img src={Location} alt='location'/> Cuba </p>
+                        
+                            <div className="card-info-2">
+                                    <h2 className="card-name">Havana</h2>
+                                    <p className="card-subtitle"><img src={Location} alt='location'/> Cuba: Havana </p>
                                     <button className="card-button">Learn More</button>
-                    </div>
-            </div>
+                            </div>
+                </div>
             <div className="popular-box-2">
                         <img className="card-2" src={Dinant} alt='location'/>
                     
                         <div className="card-info-2">
                                 <h2 className="card-name">Dinant</h2>
-                                <p className="card-subtitle"><img src={Location} alt='location'/> Belgium </p>
+                                <p className="card-subtitle"><img src={Location} alt='location'/> Belgium: Dinant </p>
                                     <button className="card-button">Learn More</button>
                     </div>
             </div>
@@ -149,7 +173,7 @@ class TravelBook extends Component {
                     
                         <div className="card-info-2">
                                 <h2 className="card-name">Siargao Island</h2>
-                                <p className="card-subtitle"><img src={Location} alt='location'/>  Philippines  </p>
+                                <p className="card-subtitle"><img src={Location} alt='location'/>  Philippines: Siargao Island  </p>
                                     <button className="card-button">Learn More</button>
                     </div>
             </div>
