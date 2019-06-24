@@ -5,7 +5,6 @@ import { setToggle } from '../../ducks/toggleReducer';
 import { setUser } from '../../ducks/userReducer';
 import { allDestinations, addToList  } from '../../ducks/travelReducer';
 import HillSide from '../../images/HillSide.jpeg';
-import Location from '../../images/Location.svg';
 import './Explore.scss';
 
 

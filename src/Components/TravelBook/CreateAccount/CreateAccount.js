@@ -19,7 +19,7 @@ class CreateAccount extends Component {
     }
 
     componentDidMount(){
-        this.createAccount()
+        this.accountHandler()
     }
     
 
@@ -32,19 +32,21 @@ class CreateAccount extends Component {
 
     createAccount = () => {
         const { username, password, email } = this.state;
+        if(!username || !password || !email) {
+            return alert('Fill Complete The Form')
+        }
         axios.post('/api/travelbook/create-account', { username, password, email }).then(res => {
             this.setState({ username: '', password: ''})
             this.props.setUser(res.data);
-            
         }).catch((err) => {console.log("LOGIN", err)})
+       
     }
   
-
-
-
     render(){
         const { username, email, password } = this.state;
-        const { user } = this.props.userReducer;
+        // const { user } = this.props.userReducer;
+
+
         console.log(this.props, "USER")
         return (
             <div className="signin-container"> 
@@ -83,19 +85,20 @@ class CreateAccount extends Component {
                             name="password"
                             />
                         </div>
+                        
                         <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>
                             <button className="signin-button" onClick={this.createAccount}>Create Account </button>
                         </Link>
 
+                        <Link to="/create-account" style={{ color: 'white', textDecoration: 'none'}}>
+                            <button className="create-button">signin</button>
+                        </Link>
+
+                        
+
                         <p><a href="http://localhost:3000/signin">Do you have an account?</a></p> 
                         
                     </div>
-
-                    {!user ? (
-                        <Link to="/create-account" style={{ color: 'white', textDecoration: 'none'}}></Link>
-                    ) : (
-                         <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}></Link>
-                   )}
             </div>
         )
     }

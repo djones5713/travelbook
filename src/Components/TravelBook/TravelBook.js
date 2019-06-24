@@ -24,14 +24,21 @@ class TravelBook extends Component {
         this.state = {
            userInput: "",
            option: "",
-           spain: []
-           
+           spain: [],
+           norway: [],
+           cuba: [],
+           belgium: [],
+           philippines: []
         }
     }
 
     componentDidMount(){
         this.getData()
         this.getSpian()
+        this.getNorway()
+        this.getCuba()
+        this.getBelgium()
+        this.getPhilippines()
     }
 
     handleChange(value){
@@ -43,13 +50,13 @@ class TravelBook extends Component {
 
     getData = () => {
         const { userInput } = this.state
-        console.log(this.state.option)
-        console.log(userInput)
+        // console.log(this.state.option)
+        // console.log(userInput)
         axios.get(`/api/travelbook/destinations/${this.state.option}/${userInput}`)
         .then(res => {
-            console.log('got response')
+            // console.log('got response')
            this.props.allDestinations(res.data)
-           console.log(res.data)
+        //    console.log(res.data)
        })
 
     }
@@ -62,23 +69,83 @@ class TravelBook extends Component {
             "x-api-key":  REACT_APP_API_KEY
          }
         }).then(res => {
-             console.log('got response')
+            //  console.log('got response')
             this.setState({
                 spain: res.data.data.places
+            })
+            // console.log(res.data.data.places)
+        })
+    }
+
+    getNorway = () => {
+        axios.get('https://api.sygictravelapi.com/1.1/en/places/list?parents=country:4&levels=city&limit=1',  {
+             headers: {
+            "x-api-key":  REACT_APP_API_KEY
+         }
+        }).then(res => {
+            //  console.log('got response')
+            this.setState({
+                norway: res.data.data.places
+            })
+            // console.log(res.data.data.places)
+        })
+    }
+
+    getCuba = () => {
+        axios.get('https://api.sygictravelapi.com/1.1/en/places/list?parents=country:51&levels=city&limit=1',  {
+             headers: {
+            "x-api-key":  REACT_APP_API_KEY
+         }
+        }).then(res => {
+            //  console.log('got response')
+            this.setState({
+                cuba: res.data.data.places
+            })
+            // console.log(res.data.data.places)
+        })
+    }
+
+    getBelgium = () => {
+        axios.get('https://api.sygictravelapi.com/1.1/en/places/list?parents=country:51&levels=city&limit=1',  {
+             headers: {
+            "x-api-key":  REACT_APP_API_KEY
+         }
+        }).then(res => {
+            //  console.log('got response')
+            this.setState({
+                belgium: res.data.data.places
+            })
+            // console.log(res.data.data.places)
+        })
+    }
+
+    getPhilippines = () => {
+        axios.get('https://api.sygictravelapi.com/1.1/en/places/list?parents=country:94&levels=city&limit=1',  {
+             headers: {
+            "x-api-key":  REACT_APP_API_KEY
+         }
+        }).then(res => {
+             console.log('got response')
+            this.setState({
+                philippines: res.data.data.places
             })
             console.log(res.data.data.places)
         })
     }
 
+
+
+
+
     
 
     render(){
     const { user } = this.props.userReducer;
-    console.log(this.state)
+    // console.log(this.state)
     const mappedSpain = this.state.spain.map(place => (
       
         <div key={place.id}>
-              <div className="popular-box">
+              <div className="popular-box   feature">
               <img className="card" src={Spain} alt="spain"/>
               <div className="card-info">
                 <h2 className="card-name">{place.name}</h2>
@@ -90,6 +157,74 @@ class TravelBook extends Component {
           </div>
 
     ))
+    const mappedNorway = this.state.norway.map(place => (
+      
+        <div key={place.id}>
+            <div className="popular-box-2">
+                <img className="card-2" src={BlueOcean} alt='location'/>
+                <div className="card-info-2">
+                        <h2 className="card-name">{place.name}</h2>
+                        <p className="card-subtitle"><img src={Location} alt='location'/>Norway:{place.name}</p>
+                        <button className="card-button"><a href={place.url}>Learn More</a></button>
+                </div>
+            </div>
+
+
+
+        </div>
+           
+    ))
+    
+    const mappedCuba = this.state.cuba.map(place => (
+      
+        <div key={place.id}>
+            <div className="popular-box-2">
+                <img className="card-2" src={Havana} alt='location'/>
+                <div className="card-info-2">
+                        <h2 className="card-name">{place.name}</h2>
+                        <p className="card-subtitle"><img src={Location} alt='location'/>Cuba:{place.name}</p>
+                        <button className="card-button"><a href={place.url}>Learn More</a></button>
+                </div>
+            </div>
+
+
+
+        </div>
+           
+    ))
+
+    const mappedBelgium = this.state.belgium.map(place => (
+      
+        <div key={place.id}>
+            <div className="popular-box-2">
+                <img className="card-2" src={Dinant} alt='location'/>
+                <div className="card-info-2">
+                        <h2 className="card-name">{place.name}</h2>
+                        <p className="card-subtitle"><img src={Location} alt='location'/>Belgium:{place.name}</p>
+                        <button className="card-button"><a href={place.url}>Learn More</a></button>
+                </div>
+            </div>
+        </div>
+           
+    ))
+
+    const mappedPhilippines = this.state.philippines.map(place => (
+       
+        <div key={place.id}>
+            <div className="popular-box-2">
+                <img className="card-2" src={Siargao} alt='location'/>
+                <div className="card-info-2">
+                        <h2 className="card-name">{place.name}</h2>
+                        <p className="card-subtitle"><img src={Location} alt='location'/>Philippines:{place.name}</p>
+                        <button className="card-button"><a href={place.url}>Learn More</a></button>
+                </div>
+            </div>
+        </div>
+           
+    ))
+
+
+
     return (
 
         <div>
@@ -135,48 +270,14 @@ class TravelBook extends Component {
        
       <h1 className="popular-section">Popular Destinations</h1>
       <hr className="popular-line"/>
+      <div>
            <div className="popular-box">
                <div> {mappedSpain}</div> 
-                <div className="popular-box-2">
-                    <img className="card-2" src={BlueOcean} alt='location'/>
-                
-                    <div className="card-info-2">
-                            <h2 className="card-name">Norway</h2>
-                            <p className="card-subtitle"><img src={Location} alt='location'/>Norway: Bergen </p>
-                            <button className="card-button">Learn More</button>
-                    </div>
-                </div>
+               <div>{mappedNorway}</div>
+               <div>{mappedCuba}</div>
+               <div>{mappedBelgium}</div>
+               <div>{mappedPhilippines}</div>
           </div>
-
-
-          <div className="container-2">
-                <div className="popular-box-2">
-                        <img className="card-2" src={Havana} alt='location'/>
-                        
-                            <div className="card-info-2">
-                                    <h2 className="card-name">Havana</h2>
-                                    <p className="card-subtitle"><img src={Location} alt='location'/> Cuba: Havana </p>
-                                    <button className="card-button">Learn More</button>
-                            </div>
-                </div>
-            <div className="popular-box-2">
-                        <img className="card-2" src={Dinant} alt='location'/>
-                    
-                        <div className="card-info-2">
-                                <h2 className="card-name">Dinant</h2>
-                                <p className="card-subtitle"><img src={Location} alt='location'/> Belgium: Dinant </p>
-                                    <button className="card-button">Learn More</button>
-                    </div>
-            </div>
-            <div className="popular-box-2">
-                        <img className="card-2" src={Siargao} alt='location'/>
-                    
-                        <div className="card-info-2">
-                                <h2 className="card-name">Siargao Island</h2>
-                                <p className="card-subtitle"><img src={Location} alt='location'/>  Philippines: Siargao Island  </p>
-                                    <button className="card-button">Learn More</button>
-                    </div>
-            </div>
         </div>
 
         <hr className="popular-line-2"/>

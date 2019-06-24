@@ -11,13 +11,13 @@ class SignIn extends Component {
     constructor(props){
         super(props)
         this.state = {
-            email: undefined,
-            password: undefined
+            email: "",
+            password: ""
         }
     }
 
 componentDidMount(){
-    this.login()
+    this.accountHandler()
 }
 
     accountHandler = (prop, value) =>{
@@ -30,6 +30,9 @@ componentDidMount(){
 
     login = () => {
         const { email, password } = this.state;
+        if(!email || !password){
+            return alert('Please Complete Form')
+        }
         console.log(this.state)
         axios.post('/api/travelbook/login', { email, password }).then((res) => {
             this.props.setUser(res.data);
@@ -44,7 +47,7 @@ componentDidMount(){
 
     render(){
         const { email, password } = this.state;
-        const { user } = this.props.userReducer;
+        // const { user } = this.props.userReducer;
         return (
        <div className="overlay">
             <div className="signin-container"> 
@@ -75,32 +78,16 @@ componentDidMount(){
                             />
                         </div>
                         <div>
-                              {!user || user === undefined ? (
-                                  <div>
-                                 <Link to="/signin" style={{ color: 'white', textDecoration: 'none'}}>
-                                  <button className="signin-button" onClick={this.login}>SignIn</button>
-                                 </Link>
-                                  
-                                  </div>
-                                )
-                                : (
-                                <div>
                                 <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>
-                                <button className="signin-button" onClick={this.login}>SignIn</button>
+                                  <button className="signin-button" onClick={this.login}>SignIn</button>
                                 </Link>
-                                </div>
-                               )}
-                        </div>
-                        <div>
-                                <button className="create-button">Create Account</button>
+
+                                <Link to="/create-account" style={{ color: 'white', textDecoration: 'none'}}>
+                                  <button className="create-button">Create Account</button>
+                                </Link>
+                              
                         </div>
                     </form>
-                    {!user || user === undefined ? (
-                        <Link to="/signin" style={{ color: 'white', textDecoration: 'none'}}></Link>
-                    ) : (
-                        <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}></Link>
-                        )
-                    }
             </div>
             </div>
         )
