@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { removeFromList, updateList } from '../../ducks/travelReducer';
 import { setUser } from '../../ducks/userReducer';
+import Josh from '../../images/Josh.jpeg';
+import '../Dashboard/Dashboard.scss';
+import { FaMinusSquare } from 'react-icons/fa';
 
 class  Dashboard extends Component{
 constructor(props){
@@ -32,6 +35,13 @@ updateDestination = (id, date) => {
         console.log('HIT',res.data)
     })
 }
+
+  componentDidMount(){
+        axios.get('/api/travelbook/user').then(res => {
+            this.props.setUser(res.data)
+        })
+
+    }
 
 deleteDestination = (id) => {
 
@@ -71,28 +81,42 @@ getUserDestination = () => {
 
 
 
-
 render(){
     console.log(this.props.userReducer, 'Hi I am user')
     console.log(this.props.travelReducer, "travel reducer")
     const {userList} = this.props.travelReducer
     const mappedUserDestination = userList.map((list, index) => {
         return(
-            <div key={index}>
-                <p>{list.date}</p>
-                 <input onChange={(e) =>this.handleChange(e.target.value)}/>
-                 <button onClick={()=> this.updateDestination(list.id, this.state.Date)}>Submit</button>
-                 <div>{list.destination_id}</div>
-                 <img src={list.image_url} alt="location"/>
-                 <button onClick={() => this.deleteDestination(list.id)}>Delete</button>
-
+            <div className="main-info" key={index}>
+                <div  className="card-trash" onClick={() => this.deleteDestination(list.id)}><FaMinusSquare /></div>
+                 <div className="about-info">
+                 <img className="card-img" src={list.image_url} alt="location"/>
+                 <p className="card-p" >{list.description}</p>
+                 </div>
+                 <div className="submit">
+                 <p className="submit-date">{list.date}</p>
+                 <input className="submit-input" onChange={(e) =>this.handleChange(e.target.value)}/>
+                 <button className="submit-button" onClick={()=> this.updateDestination(list.id, this.state.Date)}>Submit</button>
+                 </div>
             </div>
         )
         })
 
 
     return (
-        <div>{ mappedUserDestination }</div>
+        <div className="dashboard">
+        <div className="header" ></div>
+
+        <div className="container">
+            <div className="profile">
+                <img className="profile-photo" src={Josh} alt="human"/>
+                <p className="about">Followers<span>540</span></p>
+                <p className="about">Following<span>324</span></p>
+                <p className="about">Destinations<span className="about-span">43</span></p>
+            </div>
+            <div className="userlist">{ mappedUserDestination }</div>
+        </div>
+        </div>
     )
 }}
 

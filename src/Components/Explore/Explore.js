@@ -5,6 +5,7 @@ import { setToggle } from '../../ducks/toggleReducer';
 import { setUser } from '../../ducks/userReducer';
 import { allDestinations, addToList  } from '../../ducks/travelReducer';
 import HillSide from '../../images/HillSide.jpeg';
+import Location from '../../images/Location.svg';
 import './Explore.scss';
 
 
@@ -15,6 +16,7 @@ class Explore extends Component {
      
      }
  }
+
 
 
 handleChange(value){
@@ -38,6 +40,18 @@ addDestination = (destination_id, country, image_url) => {
 }
 
 
+// componentDidMount(){
+
+// const { userInput } = this.state
+//     axios.get('/api/travelbook/user').then(res => {
+//         this.props.setUser(res.data)
+//     })
+
+//     axios.get(`/api/travelbook/destinations/${this.state.option}/${userInput}`)
+//     .then(res => {
+//        this.props.allDestinations(res.data)
+//    })
+// }
 
 
 getData = () => {
@@ -59,14 +73,14 @@ render(){
     const mappedUserDestination = this.props.travelReducer.Destinations.map((place, index) => (
        
        
-        // console.log(place),
+
       <div className="red-red" key = {index}>
       
         <div className="info">
 
-            <img src={place.image_url} alt="location"/>
+            <img className="Destination" src={place.image_url} alt="location"/>
               <p className="card-name">{place.destination}</p>
-              <p className="card-subtitle">{place.country}: {place.destination}</p>
+              <p className="card-subtitle"><img  className="location" src={Location} alt='location'/>{place.country}: {place.destination}</p>
             <button  className="card-button" onClick={()=> this.addDestination(place.destination_id)}>Add</button>
             
              
@@ -107,6 +121,8 @@ render(){
             </div>
             {/* end of section container */}
 
+            <h1 className="popular-section"> Destinations</h1>
+                <hr className="popular-line"/>
             <div className="red">{mappedUserDestination}</div>
             <footer></footer>
         </div>

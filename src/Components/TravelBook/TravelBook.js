@@ -48,20 +48,20 @@ class TravelBook extends Component {
         })
     }
 
+
+
     getData = () => {
         const { userInput } = this.state
-        // console.log(this.state.option)
-        // console.log(userInput)
+        console.log(this.state.option)
+        console.log(userInput)
         axios.get(`/api/travelbook/destinations/${this.state.option}/${userInput}`)
         .then(res => {
-            // console.log('got response')
+            console.log('got response')
            this.props.allDestinations(res.data)
-        //    console.log(res.data)
+           console.log(res.data)
        })
 
     }
-
-
 
     getSpian = () => {
         axios.get('https://api.sygictravelapi.com/1.1/en/places/list?parents=country:13&levels=city&limit=1',  {
@@ -150,7 +150,7 @@ class TravelBook extends Component {
               <div className="card-info">
                 <h2 className="card-name">{place.name}</h2>
                 <p className="card-subtitle"><img src={Location} alt='location'/> Spain: {place.name} </p>
-                <p className="card-p"> {place.perex}</p>
+                <p className="card-pa"> {place.perex}</p>
                 <button className="card-button"><a href={place.url}>Learn More</a></button>
               </div>
               </div>

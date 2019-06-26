@@ -1,7 +1,15 @@
 $buttonColor: orange;
+$main-background: #FCFAF7;
 $titleSize: 30px;
-$cardHeight: 260px;
-$cardWidth: 260px;
+
+
+%share {
+    font-size: 12px;
+     padding-top: 10px;
+     padding-left: 15px;
+     padding-right: 15px;
+     letter-spacing: .7px;
+}
 
 .header-img{
     width: 100vw;
@@ -95,8 +103,6 @@ $cardWidth: 260px;
     flex-flow: row wrap;
     justify-content: center;
    
-  
-   
  }
 
  .feature{
@@ -138,11 +144,7 @@ a{
      background-color: white;
      width: 260px;
      height: 360px;
-     font-size: 12px;
-     padding-top: 10px;
-     padding-left: 15px;
-     padding-right: 15px;
-     letter-spacing: .7px;
+   @extend %share
 
  }
 
@@ -152,14 +154,13 @@ a{
     background-color: white;
     height: 160px;
     width: 250px;
-    font-size: 12px;
-    padding-top: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
-    letter-spacing: .7px;
+    @extend %share
 }
 
 
+.card-pa {
+    background-color: white;
+}
  .card-name {
     text-transform: uppercase;
     font-size: 20px;
@@ -212,6 +213,9 @@ footer {
        
    
     }
+    .feature{
+        padding-bottom: 20px;
+     }
 }
 
 
@@ -229,7 +233,7 @@ footer {
     }
 
     .popular-section {
-        margin-top: 200px;
+        margin-top: 300px;
     }
 
    
