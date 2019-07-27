@@ -129,4 +129,6 @@ const invokedConnect = connect(
     mapStateToProps,
     mapDispatchToProps 
 )
+
+// Refactoring note create new object because mapStateToProps pulls everything from redux 
 export default invokedConnect( CreateAccount)

@@ -9,6 +9,7 @@ import About from './Components/TravelBook/About/About';
 import SignIn from './Components/TravelBook/SignIn/SignIn';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Explore from './Components/Explore/Explore';
+import Search from './Components/TravelBook/Search/Search';
 import CreateAccount from './Components/TravelBook/CreateAccount/CreateAccount';
 import './App.scss';
 
@@ -35,7 +36,7 @@ render(){
        
     <div className="App" >
 
-        {!user ?(
+        {/* {!user ?(
             <ul>
                 <li><Link to="/" style={{ color: 'white', textDecoration: 'none'}}  >Travel Book</Link></li>
                 <li><Link to="/signin" style={{ color: 'white', textDecoration: 'none'}}  >SignIn</Link></li>
@@ -51,7 +52,7 @@ render(){
             </ul>   
             )
         }
-        
+         */}
 
             <Switch>
                 <Route path="/"  exact strict component={TravelBook} />
@@ -60,6 +61,7 @@ render(){
                 <Route path="/create-account" exact strict component={CreateAccount} />
                 <Route path="/explore"  exact strict component={Explore} />
                 <Route path="/dashboard" exact strict component={Dashboard} />
+                <Route path="/search" exact strict component={Search} />
         
             </Switch>
         
