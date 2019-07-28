@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from '../src/ducks/userReducer';
 import { setToggle } from '../src/ducks/toggleReducer';
@@ -10,6 +10,7 @@ import SignIn from './Components/TravelBook/SignIn/SignIn';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Explore from './Components/Explore/Explore';
 import Search from './Components/TravelBook/Search/Search';
+import Feed from './Components/TravelBook/Feed/Feed';
 import CreateAccount from './Components/TravelBook/CreateAccount/CreateAccount';
 import './App.scss';
 
@@ -62,6 +63,7 @@ render(){
                 <Route path="/explore"  exact strict component={Explore} />
                 <Route path="/dashboard" exact strict component={Dashboard} />
                 <Route path="/" exact strict component={Search} />
+                <Route path="/feed" exact strict component={Feed} />
         
             </Switch>
         

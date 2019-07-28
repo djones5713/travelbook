@@ -4,12 +4,12 @@ import axios from 'axios';
 import { setToggle } from '../../ducks/toggleReducer';
 import { setUser } from '../../ducks/userReducer';
 import { allDestinations, addToList  } from '../../ducks/travelReducer';
+import { Link } from 'react-router-dom';
 import NavBar from '../Navigation/NavBar';
 import rockss from '../../Images/rockss.jpg';
 import BlueOcean from '../../Images/BlueOcean.jpeg';
 import Havana from '../../Images/Havana.jpeg';
 import Siargao from '../../Images/Siargao.jpeg';
-import Dinant from '../../Images/Dinant.jpeg';
 import Location from '../../Images/Location.svg';
 import './Explore.scss';
 
@@ -150,21 +150,21 @@ render(){
     // const { user } = this.props.userReducer;
 
 
-    // const mappedUserDestination = this.props.travelReducer.Destinations.map((place, index) => (
+    const mappedUserDestination = this.props.travelReducer.Destinations.map((place, index) => (
 
-    //   <div className="red-red" key = {index}>
+      <div className="red-red" key = {index}>
       
-    //     <div className="info">
+        <div className="info">
 
-    //         <img className="Destination" src={place.image_url} alt="location"/>
-    //           <p className="card-name">{place.destination}</p>
-    //           <p className="card-subtitle"><img  className="location" src={Location} alt='location'/>{place.country}: {place.destination}</p>
-    //         <button  className="card-button" onClick={()=> this.addDestination(place.destination_id)}>Add</button>
+            <img className="Destination" src={place.image_url} alt="location"/>
+              <p className="card-name">{place.destination}</p>
+              <p className="card-subtitle"><img  className="location" src={Location} alt='location'/>{place.country}: {place.destination}</p>
+            <button  className="card-button" onClick={()=> this.addDestination(place.destination_id)}>Add</button>
             
              
-    //     </div>
-    // </div>
-    // ))
+        </div>
+    </div>
+    ))
 
   
     // console.log(this.state)
@@ -261,7 +261,10 @@ render(){
 
                     <input placeholder="Country" onChange={(e) => this.handleChange(e.target.value)}/>
                        
-                            <button id="search" onClick={this.getData}>Search</button>
+
+                            <Link to="/feed">
+                                <button id="search" onClick={this.getData}>Search</button>
+                            </Link>
                      
                 </div>
         
