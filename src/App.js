@@ -55,13 +55,13 @@ render(){
          */}
 
             <Switch>
-                <Route path="/"  exact strict component={TravelBook} />
+                <Route path="/travelbook"  exact strict component={TravelBook} />
                 <Route path="/about" exact strict component={About} />
                 <Route path="/signin" exact strict component={SignIn} />
                 <Route path="/create-account" exact strict component={CreateAccount} />
                 <Route path="/explore"  exact strict component={Explore} />
                 <Route path="/dashboard" exact strict component={Dashboard} />
-                <Route path="/search" exact strict component={Search} />
+                <Route path="/" exact strict component={Search} />
         
             </Switch>
         

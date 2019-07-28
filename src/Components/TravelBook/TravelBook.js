@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import { allDestinations } from '../../ducks/travelReducer';
 import { setUser } from '../../ducks/userReducer';
+import NavBar from '../Navigation/NavBar';
 import './TravelBook.scss';
 import HillSide from '../../images/HillSide.jpeg';
 import BlueOcean from '../../images/BlueOcean.jpeg';
@@ -24,7 +25,6 @@ class TravelBook extends Component {
         this.state = {
            userInput: "",
            option: "",
-           spain: [],
            norway: [],
            cuba: [],
            belgium: [],
@@ -34,7 +34,6 @@ class TravelBook extends Component {
 
     componentDidMount(){
         this.getData()
-        this.getSpian()
         this.getNorway()
         this.getCuba()
         this.getBelgium()
@@ -63,19 +62,6 @@ class TravelBook extends Component {
 
     }
 
-    getSpian = () => {
-        axios.get('https://api.sygictravelapi.com/1.1/en/places/list?parents=country:13&levels=city&limit=1',  {
-             headers: {
-            "x-api-key":  REACT_APP_API_KEY
-         }
-        }).then(res => {
-            //  console.log('got response')
-            this.setState({
-                spain: res.data.data.places
-            })
-            // console.log(res.data.data.places)
-        })
-    }
 
     getNorway = () => {
         axios.get('https://api.sygictravelapi.com/1.1/en/places/list?parents=country:4&levels=city&limit=1',  {
@@ -142,21 +128,6 @@ class TravelBook extends Component {
     render(){
     const { user } = this.props.userReducer;
     // console.log(this.state)
-    const mappedSpain = this.state.spain.map(place => (
-      
-        <div key={place.id}>
-              <div className="popular-box   feature">
-              <img className="card" src={Spain} alt="spain"/>
-              <div className="card-info">
-                <h2 className="card-name">{place.name}</h2>
-                <p className="card-subtitle"><img src={Location} alt='location'/> Spain: {place.name} </p>
-                <p className="card-pa"> {place.perex}</p>
-                <button className="card-button"><a href={place.url}>Learn More</a></button>
-              </div>
-              </div>
-          </div>
-
-    ))
     const mappedNorway = this.state.norway.map(place => (
       
         <div key={place.id}>
@@ -228,8 +199,8 @@ class TravelBook extends Component {
     return (
 
         <div>
-     
         <div className="section">
+            <NavBar />
             <img className="header-img" src={HillSide} alt="BlueOcean" />
         
             <div className="section-container">
@@ -272,7 +243,6 @@ class TravelBook extends Component {
       <hr className="popular-line"/>
       <div>
            <div className="popular-box">
-               <div> {mappedSpain}</div> 
                <div>{mappedNorway}</div>
                <div>{mappedCuba}</div>
                <div>{mappedBelgium}</div>

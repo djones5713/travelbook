@@ -5,9 +5,16 @@
     margin: 0;
 }
 
+.waterside{
+    height: 600px;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+}
+
 .search-box{
     position: absolute;
-    top: 20%;
+    top: 25%;
     right: 20%;
   
 }
@@ -24,14 +31,25 @@
     color: white;
     text-align: center;
     letter-spacing: 3px;
+    font-size: 14px;
     font-family: Arial;
     margin-top: 0;
     font-weight: 300;
+    text-transform: uppercase;
 }
 
-.waterside{
-    height: 600px;
-    width: 100vw;
-    padding: 0;
-    margin: 0;
+
+.search-btn {
+    color: white;
+    background-color: transparent;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-family: Arial;
+    text-align: center;
+    width: 150px;
+    margin-left: 40%;
+}
+
+.search-btn:hover {
+    background-color: rgba(0, 221, 255, 0.55);
 }
