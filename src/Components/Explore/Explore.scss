@@ -1,3 +1,46 @@
+.section-explore{
+    position: relative;
+}
+
+.rockss{
+    width: 100vw;
+    height: 600px;
+    margin-bottom: 0;
+}
+
+.search-explore {
+    position: absolute;
+    justify-content: center;
+    border: solid 1px white;
+    margin-left: 20%;
+    top: 30%;
+    width: 800px;
+    height: 100px;
+}
+
+.title-explore{
+    font-family: Arial;
+    text-align: center;
+    color: white;
+    top: 25%;
+    right: 36%;
+    letter-spacing: 3px;
+    position: absolute;
+    font-weight: 300;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.search-bar {
+    display: flex;
+}
+
+.divider-info {
+    width: 100vw;
+    height: 200px;
+    background-color: rgb(4, 95, 109);
+    margin-top: 0;
+}
 
 .red {
     margin-top: 200px;

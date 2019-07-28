@@ -6,13 +6,12 @@ import { allDestinations } from '../../ducks/travelReducer';
 import { setUser } from '../../ducks/userReducer';
 import NavBar from '../Navigation/NavBar';
 import './TravelBook.scss';
-import HillSide from '../../images/HillSide.jpeg';
-import BlueOcean from '../../images/BlueOcean.jpeg';
-import Havana from '../../images/Havana.jpeg';
-import Siargao from '../../images/Siargao.jpeg';
-import Dinant from '../../images/Dinant.jpeg';
-import Spain from '../../images/Spain.jpeg';
-import Location from '../../images/Location.svg';
+import HillSide from '../../Images/HillSide.jpeg';
+import BlueOcean from '../../Images/BlueOcean.jpeg';
+import Havana from '../../Images/Havana.jpeg';
+import Siargao from '../../Images/Siargao.jpeg';
+import Dinant from '../../Images/Dinant.jpeg';
+import Location from '../../Images/Location.svg';
 
   
 const { REACT_APP_API_KEY } = process.env;

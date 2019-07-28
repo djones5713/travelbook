@@ -77,8 +77,9 @@ $titleSize: 30px;
 .popular-section {
     margin-top: 145px;
     text-align: center;
-    font-size: $titleSize;
     text-transform: uppercase;
+    font-family: Arial;
+    font-size: 20px;
 }
 
 .popular-line {
@@ -86,6 +87,7 @@ $titleSize: 30px;
     height: 3px;
     border: none;
     background-color: $buttonColor;
+    margin-top: 50px;
     margin-bottom: 60px;
 }
 
@@ -163,17 +165,19 @@ a{
 }
  .card-name {
     text-transform: uppercase;
+    font-family: Arial;
     font-size: 20px;
  }
 
  .card-subtitle{
    text-transform: uppercase;
-
+   font-family: Arial;
  }
 
 
  .card-button {
     background-color: $buttonColor;
+    font-family: Arial;
     border-radius: 20px;
     width: 200px;
     color: white;

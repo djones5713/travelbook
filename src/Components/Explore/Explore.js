@@ -4,20 +4,37 @@ import axios from 'axios';
 import { setToggle } from '../../ducks/toggleReducer';
 import { setUser } from '../../ducks/userReducer';
 import { allDestinations, addToList  } from '../../ducks/travelReducer';
-import HillSide from '../../images/HillSide.jpeg';
-import Location from '../../images/Location.svg';
+import NavBar from '../Navigation/NavBar';
+import rockss from '../../Images/rockss.jpg';
+import BlueOcean from '../../Images/BlueOcean.jpeg';
+import Havana from '../../Images/Havana.jpeg';
+import Siargao from '../../Images/Siargao.jpeg';
+import Dinant from '../../Images/Dinant.jpeg';
+import Location from '../../Images/Location.svg';
 import './Explore.scss';
 
+const { REACT_APP_API_KEY } = process.env;
 
 class Explore extends Component {
  constructor(props){
      super(props)
      this.state = {
-     
+        userInput: "",
+        option: "",
+        norway: [],
+        cuba: [],
+        belgium: [],
+        philippines: []
      }
  }
 
-
+ componentDidMount(){
+    this.getData()
+    this.getNorway()
+    this.getCuba()
+    this.getBelgium()
+    this.getPhilippines()
+}
 
 handleChange(value){
     this.setState({
@@ -25,6 +42,67 @@ handleChange(value){
 
     })
 }
+
+
+getNorway = () => {
+    axios.get('https://api.sygictravelapi.com/1.1/en/places/list?parents=country:4&levels=city&limit=1',  {
+         headers: {
+        "x-api-key":  REACT_APP_API_KEY
+     }
+    }).then(res => {
+        //  console.log('got response')
+        this.setState({
+            norway: res.data.data.places
+        })
+        // console.log(res.data.data.places)
+    })
+}
+
+getCuba = () => {
+    axios.get('https://api.sygictravelapi.com/1.1/en/places/list?parents=country:51&levels=city&limit=1',  {
+         headers: {
+        "x-api-key":  REACT_APP_API_KEY
+     }
+    }).then(res => {
+        //  console.log('got response')
+        this.setState({
+            cuba: res.data.data.places
+        })
+        // console.log(res.data.data.places)
+    })
+}
+
+getBelgium = () => {
+    axios.get('https://api.sygictravelapi.com/1.1/en/places/list?parents=country:51&levels=city&limit=1',  {
+         headers: {
+        "x-api-key":  REACT_APP_API_KEY
+     }
+    }).then(res => {
+        //  console.log('got response')
+        this.setState({
+            belgium: res.data.data.places
+        })
+        // console.log(res.data.data.places)
+    })
+}
+
+getPhilippines = () => {
+    axios.get('https://api.sygictravelapi.com/1.1/en/places/list?parents=country:94&levels=city&limit=1',  {
+         headers: {
+        "x-api-key":  REACT_APP_API_KEY
+     }
+    }).then(res => {
+         console.log('got response')
+        this.setState({
+            philippines: res.data.data.places
+        })
+        console.log(res.data.data.places)
+    })
+}
+
+
+
+
 
 addDestination = (destination_id, country, image_url) => {
     
@@ -69,34 +147,103 @@ getData = () => {
 
  
 render(){
+    // const { user } = this.props.userReducer;
 
-    const mappedUserDestination = this.props.travelReducer.Destinations.map((place, index) => (
-       
-       
 
-      <div className="red-red" key = {index}>
+    // const mappedUserDestination = this.props.travelReducer.Destinations.map((place, index) => (
+
+    //   <div className="red-red" key = {index}>
       
-        <div className="info">
+    //     <div className="info">
 
-            <img className="Destination" src={place.image_url} alt="location"/>
-              <p className="card-name">{place.destination}</p>
-              <p className="card-subtitle"><img  className="location" src={Location} alt='location'/>{place.country}: {place.destination}</p>
-            <button  className="card-button" onClick={()=> this.addDestination(place.destination_id)}>Add</button>
+    //         <img className="Destination" src={place.image_url} alt="location"/>
+    //           <p className="card-name">{place.destination}</p>
+    //           <p className="card-subtitle"><img  className="location" src={Location} alt='location'/>{place.country}: {place.destination}</p>
+    //         <button  className="card-button" onClick={()=> this.addDestination(place.destination_id)}>Add</button>
             
              
+    //     </div>
+    // </div>
+    // ))
+
+  
+    // console.log(this.state)
+    const mappedNorway = this.state.norway.map(place => (
+      
+        <div key={place.id}>
+            <div className="popular-box-2">
+                <img className="card-2" src={BlueOcean} alt='location'/>
+                <div className="card-info-2">
+                        <h2 className="card-name">{place.name}</h2>
+                        <p className="card-subtitle"><img src={Location} alt='location'/>Norway:{place.name}</p>
+                        <button className="card-button"><a href={place.url}>Learn More</a></button>
+                </div>
+            </div>
+
+
+
         </div>
-    </div>
+           
+    ))
+    
+    const mappedCuba = this.state.cuba.map(place => (
+      
+        <div key={place.id}>
+            <div className="popular-box-2">
+                <img className="card-2" src={Havana} alt='location'/>
+                <div className="card-info-2">
+                        <h2 className="card-name">{place.name}</h2>
+                        <p className="card-subtitle"><img src={Location} alt='location'/>Cuba:{place.name}</p>
+                        <button className="card-button"><a href={place.url}>Learn More</a></button>
+                </div>
+            </div>
+
+
+
+        </div>
+           
+    ))
+
+    // const mappedBelgium = this.state.belgium.map(place => (
+      
+    //     <div key={place.id}>
+    //         <div className="popular-box-2">
+    //             <img className="card-2" src={Dinant} alt='location'/>
+    //             <div className="card-info-2">
+    //                     <h2 className="card-name">{place.name}</h2>
+    //                     <p className="card-subtitle"><img src={Location} alt='location'/>Belgium:{place.name}</p>
+    //                     <button className="card-button"><a href={place.url}>Learn More</a></button>
+    //             </div>
+    //         </div>
+    //     </div>
+           
+    // ))
+
+    const mappedPhilippines = this.state.philippines.map(place => (
+       
+        <div key={place.id}>
+            <div className="popular-box-2">
+                <img className="card-2" src={Siargao} alt='location'/>
+                <div className="card-info-2">
+                        <h2 className="card-name">{place.name}</h2>
+                        <p className="card-subtitle"><img src={Location} alt='location'/>Philippines:{place.name}</p>
+                        <button className="card-button"><a href={place.url}>Learn More</a></button>
+                </div>
+            </div>
+        </div>
+           
     ))
 
     return ( 
     <div> 
     
-        <div className="section">
-            <img className="header-img" src={HillSide} alt="BlueOcean" />
-        
-            <div className="section-container">
-                <h3>Choose Your Destination</h3>
-                <hr/>
+        <div className="section-explore">
+           <NavBar />
+
+                 <img className="rockss" src={rockss} alt="rockss" />
+                 <h3 className="title-explore">Choose Destination</h3>
+            <div className="search-explore">
+                 
                 <div className="search-bar">
                 
                     <select value={this.state.option} onChange={(e) => {
@@ -120,11 +267,18 @@ render(){
         
             </div>
             {/* end of section container */}
-
-            <h1 className="popular-section"> Destinations</h1>
-                <hr className="popular-line"/>
-            <div className="red">{mappedUserDestination}</div>
-            <footer></footer>
+            {/* <div className="red">{mappedUserDestination}</div> */}
+            <div className="divider-info"></div>
+            <hr className="popular-line"/>
+                <div>
+                   
+                    <div className="popular-box">
+                        <div>{mappedNorway}</div>
+                        <div>{mappedCuba}</div>
+                        {/* <div>{mappedBelgium}</div> */}
+                        <div>{mappedPhilippines}</div>
+                    </div>
+                </div>
         </div>
       </div>
     )
