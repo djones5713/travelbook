@@ -1,5 +1,6 @@
 .section-explore{
     position: relative;
+    background-color:  rgba(235, 235, 235, 0.578);
 }
 
 .rockss{
@@ -12,8 +13,8 @@
     position: absolute;
     justify-content: center;
     border: solid 1px white;
-    margin-left: 20%;
-    top: 30%;
+    margin-left: 600px;
+    top: 300px;
     width: 800px;
     height: 100px;
 }
@@ -22,8 +23,8 @@
     font-family: Arial;
     text-align: center;
     color: white;
-    top: 25%;
-    right: 36%;
+    top: 200px;
+    left: 850px;
     letter-spacing: 3px;
     position: absolute;
     font-weight: 300;
@@ -42,27 +43,38 @@
     margin-top: 0;
 }
 
+
+
 .red {
-    margin-top: 200px;
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
-    margin-top: 300px;
+    margin-top: 50px;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
-    
-    
+    justify-content: center;
 }
 
 
 .red-red {
- padding-top: 50px;
- justify-content: center;
+    margin-bottom: 70px;
+    margin-left: 30px;
 }
 
+.explore-btn {
+    color: white;
+    background-color: orange;
+    border: none;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-family: Arial;
+    text-align: center;
+    width: 250px;
+}
+
+
 .Destination{
-    width: 300px;
-    height: 200px;
+    width: 280px;
+    height: 240px;
   
 }
 .location {
@@ -73,7 +85,7 @@
 .info {
    
     background-color: white;
-    width: 300px;
+    width: 280px;
     font-size: 12px;
     letter-spacing: .7px;
 
@@ -82,14 +94,3 @@ p {
     background-color: white;
 }
 
-@media screen and (max-width: 900px) {
-    .red {
-        margin-top: 50px;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    .red {
-        margin-top: 50px;
-    }
-}

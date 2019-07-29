@@ -24,12 +24,13 @@ class Explore extends Component {
         norway: [],
         cuba: [],
         belgium: [],
-        philippines: []
+        philippines: [],
+        redirect: false
      }
  }
 
  componentDidMount(){
-    this.getData()
+    // this.getData()
     this.getNorway()
     this.getCuba()
     this.getBelgium()
@@ -147,7 +148,7 @@ getData = () => {
 
  
 render(){
-    // const { user } = this.props.userReducer;
+    const { user } = this.props.userReducer;
 
 
     const mappedUserDestination = this.props.travelReducer.Destinations.map((place, index) => (
@@ -158,8 +159,8 @@ render(){
 
             <img className="Destination" src={place.image_url} alt="location"/>
               <p className="card-name">{place.destination}</p>
-              <p className="card-subtitle"><img  className="location" src={Location} alt='location'/>{place.country}: {place.destination}</p>
-            <button  className="card-button" onClick={()=> this.addDestination(place.destination_id)}>Add</button>
+              <p className="card-subtitle">{place.country} </p>
+            <button  className="explore-btn" onClick={()=> this.addDestination(place.destination_id)}>Add</button>
             
              
         </div>
@@ -204,20 +205,7 @@ render(){
            
     ))
 
-    // const mappedBelgium = this.state.belgium.map(place => (
-      
-    //     <div key={place.id}>
-    //         <div className="popular-box-2">
-    //             <img className="card-2" src={Dinant} alt='location'/>
-    //             <div className="card-info-2">
-    //                     <h2 className="card-name">{place.name}</h2>
-    //                     <p className="card-subtitle"><img src={Location} alt='location'/>Belgium:{place.name}</p>
-    //                     <button className="card-button"><a href={place.url}>Learn More</a></button>
-    //             </div>
-    //         </div>
-    //     </div>
-           
-    // ))
+
 
     const mappedPhilippines = this.state.philippines.map(place => (
        
@@ -261,26 +249,27 @@ render(){
 
                     <input placeholder="Country" onChange={(e) => this.handleChange(e.target.value)}/>
                        
-
-                            <Link to="/feed">
-                                <button id="search" onClick={this.getData}>Search</button>
-                            </Link>
+                        <button id="search" onClick={this.getData}>Search</button>
                      
+            
                 </div>
         
             </div>
             {/* end of section container */}
-            {/* <div className="red">{mappedUserDestination}</div> */}
             <div className="divider-info"></div>
             <hr className="popular-line"/>
                 <div>
-                   
+                   {!user ? (
                     <div className="popular-box">
                         <div>{mappedNorway}</div>
                         <div>{mappedCuba}</div>
-                        {/* <div>{mappedBelgium}</div> */}
                         <div>{mappedPhilippines}</div>
                     </div>
+                   ) : 
+                   (
+                    <div className="red">{mappedUserDestination}</div>
+                   )
+                   }
                 </div>
         </div>
       </div>

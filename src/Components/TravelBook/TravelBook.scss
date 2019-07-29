@@ -88,7 +88,7 @@ $titleSize: 30px;
     border: none;
     background-color: $buttonColor;
     margin-top: 50px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
 .popular-line-2 {
@@ -166,12 +166,15 @@ a{
  .card-name {
     text-transform: uppercase;
     font-family: Arial;
-    font-size: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    padding-left: 20px;
  }
 
  .card-subtitle{
    text-transform: uppercase;
    font-family: Arial;
+   padding-left: 20px;
  }
 
 
@@ -195,53 +198,48 @@ footer {
 
 
 
-@media screen and (max-width: 1200px ) {
-    .search-bar input {
-        width: 200px;
-    }
+// @media screen and (max-width: 1200px ) {
+//     .search-bar input {
+//         width: 200px;
+//     }
     
-    .search-bar button {
-        width: 100px;
-    }
+//     .search-bar button {
+//         width: 100px;
+//     }
 
-    .card {
-        width: 300px;
-        height: 330px;
-    }
+//     .card {
+//         width: 300px;
+//         height: 330px;
+//     }
 
-    .card-info {
+//     .card-info {
     
-        height: 320px;
-        width: 250px;
+//         height: 320px;
+//         width: 250px;
     
        
    
-    }
-    .feature{
-        padding-bottom: 20px;
-     }
-}
+//     }
+//     .feature{
+//         padding-bottom: 20px;
+//      }
+// }
 
 
 
-@media screen and (max-width: 905px ) {
-    .search-bar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-     }
+// @media screen and (max-width: 905px ) {
+//     .search-bar {
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//      }
 
-     .section-container {
-        height: 300px;
+//      .section-container {
+//         height: 300px;
         
-    }
+//     }
 
-    .popular-section {
-        margin-top: 300px;
-    }
-
-   
-
-
-}
+//     .popular-section {
+//         margin-top: 300px;
+//     }}
 
