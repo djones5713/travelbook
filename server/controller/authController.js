@@ -75,7 +75,22 @@ module.exports = {
     logout: ( req, res) => {
         req.session.destroy()
         res.status(200).send('logged out')
-    }
+    },
+
+   cloud: (req, res) => {
+       const timestamp = Math.round((new Date()).getTime()/ 1000);
+
+       const api_secret = process.env.CLOUDINARY_SECRECT_API;
+
+       const signature = cloudinary.utils.api_sign_request({ timestamp: timestamp }, api_secret);
+
+       const payload = {
+           signature: signature,
+           timestamp: timestamp
+       };
+
+       res.json(payload);
+   }
 
 
 

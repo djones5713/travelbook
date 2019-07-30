@@ -249,7 +249,14 @@ render(){
 
                     <input placeholder="Country" onChange={(e) => this.handleChange(e.target.value)}/>
                        
+                       {!user ? (
+                           <Link to="/create-account">
+                           <button id="search" onClick={this.getData}>Search</button>
+                           </Link>
+                       ) : (
                         <button id="search" onClick={this.getData}>Search</button>
+                       )}
+                        
                      
             
                 </div>

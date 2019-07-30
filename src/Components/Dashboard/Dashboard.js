@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { removeFromList, updateList } from '../../ducks/travelReducer';
 import { setUser } from '../../ducks/userReducer';
-import Josh from '../../images/Josh.jpeg';
+import Josh from '../../Images/Josh.jpeg';
 import '../Dashboard/Dashboard.scss';
 import { FaMinusSquare } from 'react-icons/fa';
 

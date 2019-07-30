@@ -4,11 +4,15 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const massive = require('massive');
-const checkSession = require('./middlewares/checkSession')
+const checkSession = require('./middlewares/checkSession');
+const cloudinary = require('cloudinary');
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json())
 
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
-const { createAccount, login, userInfo, logout } = require('./controller/authController');
+const { createAccount, login, userInfo, logout, cloud } = require('./controller/authController');
 const {  getDestinations, searchDestinations, getUserDestination,  updateDestination,  addDestination, deleteDestination} = require('./controller/destinationsController');
 
 
@@ -54,6 +58,7 @@ app.put('/api/travelbook/user-destinations/:id/:user_id', updateDestination)
 //NOTE:http://localhost:3001/api/travelbook/user-destinations/4?date=2019-08-10
 app.post('/api/travelbook/user-destinations-list',  addDestination)
 app.delete('/api/travelbook/user-destinations/:id/:user_id', deleteDestination)
+app.get('/api/upload', cloud)
 
 //NOTE:http://localhost:3001/api/travelbook/user-destinations/2
 
