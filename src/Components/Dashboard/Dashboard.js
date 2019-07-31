@@ -4,14 +4,17 @@ import axios from 'axios';
 import { removeFromList, updateList } from '../../ducks/travelReducer';
 import { setUser } from '../../ducks/userReducer';
 import Josh from '../../Images/Josh.jpeg';
+import ImagesUpload from '../Dashboard/ImageUpload';
 import '../Dashboard/Dashboard.scss';
 import { FaMinusSquare } from 'react-icons/fa';
+
 
 class  Dashboard extends Component{
 constructor(props){
 super(props)
   this.state = {
-     Date: null
+     Date: null,
+  
   }
 }
 
@@ -114,6 +117,7 @@ render(){
                 <p className="about">Following<span>324</span></p>
                 <p className="about">Destinations<span className="about-span">43</span></p>
             </div>
+            <ImagesUpload />
             <div className="userlist">{ mappedUserDestination }</div>
         </div>
         </div>
