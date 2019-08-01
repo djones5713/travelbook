@@ -102,19 +102,22 @@ span {
     border-radius: 5px;
 }
 
+.dashboard {
+    display: flex;
+}
 
 @media  screen and (max-width: 1000px ) {
     .about-info{
         display: flex;
-        flex-direction: column;
+        // flex-direction: column;
         background-color: $main-background;
         font-size: 12px;
        
      }
 
      .card-img {
-        width: 300px;
-        height: 200px;
+        width: 500px;
+        height: 500px;
     }
 
     .card-p {

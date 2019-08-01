@@ -10,6 +10,7 @@ import SignIn from './Components/TravelBook/SignIn/SignIn';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Explore from './Components/Explore/Explore';
 import Search from './Components/TravelBook/Search/Search';
+import ImageUpload from './Components/Dashboard/Dashboard';
 import CreateAccount from './Components/TravelBook/CreateAccount/CreateAccount';
 import './App.scss';
 
@@ -56,6 +57,7 @@ render(){
 
             <Switch>
                 <Route path="/travelbook"  exact strict component={TravelBook} />
+                <Route path="/image-upload"  exact strict component={ImageUpload} />
                 <Route path="/about" exact strict component={About} />
                 <Route path="/signin" exact strict component={SignIn} />
                 <Route path="/create-account" exact strict component={CreateAccount} />

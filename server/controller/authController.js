@@ -1,5 +1,6 @@
 // const users = require("")
 const bcrypt = require('bcrypt');
+const cloudinary = require('cloudinary');
 
 
 module.exports = {

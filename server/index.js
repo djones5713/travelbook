@@ -5,7 +5,6 @@ const app = express();
 const session = require('express-session');
 const massive = require('massive');
 const checkSession = require('./middlewares/checkSession');
-const cloudinary = require('cloudinary');
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json())

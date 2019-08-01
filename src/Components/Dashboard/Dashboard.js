@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { removeFromList, updateList } from '../../ducks/travelReducer';
 import { setUser } from '../../ducks/userReducer';
-import Josh from '../../Images/Josh.jpeg';
 import ImagesUpload from '../Dashboard/ImageUpload';
 import '../Dashboard/Dashboard.scss';
 import { FaMinusSquare } from 'react-icons/fa';
@@ -25,6 +24,12 @@ handleChange(value){
     })
 }
 
+componentDidMount(){
+    axios.get('/api/travelbook/user').then(res => {
+        this.props.setUser(res.data)
+    })
+
+}
 
 updateDestination = (id, date) => {
     const { user_id } = this.props.userReducer.user
@@ -38,13 +43,6 @@ updateDestination = (id, date) => {
         console.log('HIT',res.data)
     })
 }
-
-  componentDidMount(){
-        axios.get('/api/travelbook/user').then(res => {
-            this.props.setUser(res.data)
-        })
-
-    }
 
 deleteDestination = (id) => {
 
@@ -87,7 +85,7 @@ getUserDestination = () => {
 render(){
     console.log(this.props.userReducer, 'Hi I am user')
     console.log(this.props.travelReducer, "travel reducer")
-    const {userList} = this.props.travelReducer
+    const {userList} = this.props.travelReducer;
     const mappedUserDestination = userList.map((list, index) => {
         return(
             <div className="main-info" key={index}>
@@ -99,27 +97,24 @@ render(){
                  <div className="submit">
                  <p className="submit-date">{list.date}</p>
                  <input className="submit-input" onChange={(e) =>this.handleChange(e.target.value)}/>
-                 <button className="submit-button" onClick={()=> this.updateDestination(list.id, this.state.Date)}>Submit</button>
+                 <button className="submit-button" onClick={()=> this.updateDestination(list.id, this.state.Date)}>Submit</button> 
                  </div>
             </div>
         )
         })
 
+    
 
     return (
         <div className="dashboard">
-        <div className="header" ></div>
-
         <div className="container">
-            <div className="profile">
-                <img className="profile-photo" src={Josh} alt="human"/>
-                <p className="about">Followers<span>540</span></p>
-                <p className="about">Following<span>324</span></p>
-                <p className="about">Destinations<span className="about-span">43</span></p>
-            </div>
             <ImagesUpload />
+        </div>
+
+        <div>
             <div className="userlist">{ mappedUserDestination }</div>
         </div>
+       
         </div>
     )
 }}

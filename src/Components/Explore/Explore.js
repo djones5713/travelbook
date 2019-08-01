@@ -149,7 +149,7 @@ getData = () => {
  
 render(){
     const { user } = this.props.userReducer;
-
+    console.log(user)
 
     const mappedUserDestination = this.props.travelReducer.Destinations.map((place, index) => (
 

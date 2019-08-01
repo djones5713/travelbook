@@ -28,47 +28,53 @@ class ImageUpload extends Component {
             this.setState({
                 uploadedFileCloudinaryUrl: response.data.secure_url
             })
-        }).catch.log(err => {
+        }).catch(err => {
             console.log(err);
         })
         })
     }
 
     render(){
-        return(
 
-<Dropzone 
-     multiple={false}
-     accept="image/*"
-     className='dropzone'
-    onDrop={this.uploadedFileCloudinaryUrl}>
-  {
-    ({ getRootProps, getInputProps }) => {
-      return (
-        <div {...getRootProps()} className="upload-form">
-          <input {...getInputProps()} />
+      return(
+        <Dropzone 
+            multiple={false}
+            accept="image/*"
+            onDrop={this.handleImageUpload}>
+            {
+                ({ getRootProps, getInputProps }) => {
+                return (
+                    <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <div>
+                        <div>
+                        { this.state.uploadedFileCloudinaryUrl ?
+                            (
+                            <div className="picture">
+                                <img className="img-upload" src={this.state.uploadedFileCloudinaryUrl} alt='cloudinary example'/>
+                                <p>Edit</p>
+                            </div>
+                            )
+                           :
+                           (
+                               
+                               <p className="picture">Upload</p>
+                           )
 
-
-            <div className='image-container'>
-                {
-                    this.state.uploadedFileCloudinaryUrl
-                ?
-                <div className="image-container"> 
-                    (<img src={this.state.uploadedFileCloudinaryUrl} alt='cloudinary example'/>)
-                </div>
-                :
-                <div>
-                    <p>Upload</p>
-                </div>
+                        }
+                        </div>
+                    </div>
+                    </div>
+                )
                 }
-            </div>
-        </div>
-      )
-    }
-  }
-</Dropzone>
+            }
+            
+        </Dropzone>
+
+     
         )
     }
 }
+
 
 export default ImageUpload
