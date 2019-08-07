@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
+import stock from '../../Images/stock.jpg';
 import axios from 'axios';
 import './ImageUpload.scss';
 
@@ -13,6 +14,7 @@ class ImageUpload extends Component {
             uploadedFileCloudinaryUrl: ''
         }
     }
+
 
     handleImageUpload = (file) => {
         axios.get('/api/upload').then(response => {
@@ -44,26 +46,25 @@ class ImageUpload extends Component {
             {
                 ({ getRootProps, getInputProps }) => {
                 return (
-                    <div {...getRootProps()}>
+                    <div {...getRootProps()} className="picture-frame">
                     <input {...getInputProps()} />
-                    <div>
-                        <div>
                         { this.state.uploadedFileCloudinaryUrl ?
                             (
+                           
                             <div className="picture">
-                                <img className="img-upload" src={this.state.uploadedFileCloudinaryUrl} alt='cloudinary example'/>
-                                <p>Edit</p>
+                                <img className="img-upload" src={this.state.uploadedFileCloudinaryUrl} alt='cloudinary'/>
                             </div>
-                            )
+                         
+                            ) 
                            :
                            (
-                               
-                               <p className="picture">Upload</p>
+                           
+                                <div className="picture">
+                                    <img className="img-upload" src={stock} alt='temp example'/>
+                                </div>
                            )
 
                         }
-                        </div>
-                    </div>
                     </div>
                 )
                 }

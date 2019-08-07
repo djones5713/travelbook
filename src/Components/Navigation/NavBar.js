@@ -23,7 +23,7 @@ class NavBar extends Component {
                     </ul>
                     ) : (
                     <ul className="navbar">
-                        <li className="nav"><Link to="/travelbook" style={{ color: 'white', textDecoration: 'none'}} >Travelbook</Link></li>
+                        {/* <li className="nav"><Link to="/travelbook" style={{ color: 'white', textDecoration: 'none'}} >Travelbook</Link></li> */}
                         <li className="nav"><Link to="/dashboard" style={{ color: 'white', textDecoration: 'none'}} >Dashboard</Link></li>
                         <Link  to="/" >
                         <button className="logout" onClick={this.logout}>Logout</button>
