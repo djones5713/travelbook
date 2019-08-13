@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { setUser } from '../../../ducks/userReducer';
 import { setToggle } from '../../../ducks/toggleReducer';
 import './SignIn.scss';
@@ -12,13 +12,11 @@ class SignIn extends Component {
         super(props)
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            redirect: false
         }
     }
 
-componentDidMount(){
-    this.accountHandler()
-}
 
     accountHandler = (prop, value) =>{
         console.log('VALUE')
@@ -30,12 +28,17 @@ componentDidMount(){
 
     login = () => {
         const { email, password } = this.state;
+   
         if(!email || !password){
-            return alert('Please Complete Form')
+            return alert('Please Complete Form') 
         }
         console.log(this.state)
         axios.post('/api/travelbook/login', { email, password }).then((res) => {
             this.props.setUser(res.data);
+            console.log(this.props.setUser)
+                this.setState({
+                    redirect: true
+                })
             console.log(res.data)
         }).catch(err => {
             console.log('axios not working ', err)
@@ -48,11 +51,15 @@ componentDidMount(){
     render(){
         const { email, password } = this.state;
         // const { user } = this.props.userReducer;
+
+        if(this.state.redirect){
+            return <Redirect to='/explore' />
+        }
         return (
        <div className="overlay">
             <div className="signin-container"> 
                
-                    <form className="signin-form">
+                    <div className="signin-form">
                        <h1 className="signin-title">SignIn</h1>
                         <div >
                             <input
@@ -72,22 +79,21 @@ componentDidMount(){
                                 this.accountHandler(e.target.name, e.target.value)
 
                             }
-                            type="current-password"
+                            type="password"
                             value={password}
                             name="password"
                             />
                         </div>
                         <div>
-                                <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>
-                                  <button className="signin-button" onClick={this.login}>SignIn</button>
-                                </Link>
 
-                                <Link to="/create-account" style={{ color: 'white', textDecoration: 'none'}}>
-                                  <button className="create-button">Create Account</button>
-                                </Link>
+                            <button className="signin-button" onClick={this.login}>SignIn</button>
+                        
+                        <Link to="/create-account" style={{ color: 'white', textDecoration: 'none'}}>
+                            <button className="create-button">Create Account</button>
+                        </Link>
                               
                         </div>
-                    </form>
+                    </div>
             </div>
             </div>
         )

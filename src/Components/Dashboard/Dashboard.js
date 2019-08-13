@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { removeFromList, updateList } from '../../ducks/travelReducer';
 import { setUser } from '../../ducks/userReducer';
+import ImagesUpload from '../Dashboard/ImageUpload';
+import '../Dashboard/Dashboard.scss';
+import { FaMinusSquare } from 'react-icons/fa';
+
 
 class  Dashboard extends Component{
 constructor(props){
 super(props)
   this.state = {
-     Date: null
+     Date: null,
+  
   }
 }
 
@@ -19,6 +24,13 @@ handleChange(value){
     })
 }
 
+componentDidMount(){
+    axios.get('/api/travelbook/user').then(res => {
+        this.props.setUser(res.data)
+    })
+
+
+}
 
 updateDestination = (id, date) => {
     const { user_id } = this.props.userReducer.user
@@ -59,40 +71,51 @@ getUserDestination = () => {
 }
 
 
-getUserDestination = () => {
-    axios.get('/api/travelbook/user-destinations')
-    .then(res => {
-        console.log('hit')
-        this.props.setUser(res.data)
-        this.props.updateList(res.data)
-        console.log('HIT',res.data)
-    })
-}
-
-
-
-
 render(){
     console.log(this.props.userReducer, 'Hi I am user')
     console.log(this.props.travelReducer, "travel reducer")
-    const {userList} = this.props.travelReducer
+    const {userList} = this.props.travelReducer;
     const mappedUserDestination = userList.map((list, index) => {
         return(
-            <div key={index}>
-                <p>{list.date}</p>
-                 <input onChange={(e) =>this.handleChange(e.target.value)}/>
-                 <button onClick={()=> this.updateDestination(list.id, this.state.Date)}>Submit</button>
-                 <div>{list.destination_id}</div>
-                 <img src={list.image_url} alt="location"/>
-                 <button onClick={() => this.deleteDestination(list.id)}>Delete</button>
+            <div className="dashboard-info" key={index}>
+                
+                 <div className="about-info">
 
+                 <img className="dashboard-img" src={list.image_url} alt="location"/>
+                 <div  className="card-trash" onClick={() => this.deleteDestination(list.id)}><FaMinusSquare /></div>
+                 {/* <p className="card-p" >{list.description}</p> */}
+                 </div>
+                 {/* <div className="submit">
+                 <p className="submit-date">{list.date}</p>
+                 <input className="submit-input" onChange={(e) =>this.handleChange(e.target.value)}/>
+                 <button className="submit-button" onClick={()=> this.updateDestination(list.id, this.state.Date)}>Submit</button> 
+                
+                 </div> */}
             </div>
         )
         })
 
+    
 
     return (
-        <div>{ mappedUserDestination }</div>
+        <div className="dashboard">
+        
+            <div>
+            <div className="container">
+                <ImagesUpload />
+                <div className="container-info">
+                    <h1 className="dash-name">Hanna</h1>
+                    <h3 className="dash-subtitle">
+                        I am a traveling enthusiast
+                    </h3>
+                </div>
+            </div>
+                
+                <div className="userlist">{ mappedUserDestination }</div>
+            </div>
+        </div>
+
+       
     )
 }}
 

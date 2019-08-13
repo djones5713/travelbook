@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from '../../../ducks/userReducer';
 import '../CreateAccount/CreateAccount.scss'
@@ -13,7 +13,8 @@ class CreateAccount extends Component {
         this.state = {
             username: "",
             password: "",
-            email: ""
+            email: "",
+            Redirect: false
 
         }
     }
@@ -38,6 +39,9 @@ class CreateAccount extends Component {
         axios.post('/api/travelbook/create-account', { username, password, email }).then(res => {
             this.setState({ username: '', password: ''})
             this.props.setUser(res.data);
+            this.setState({
+                Redirect: true
+            })
         }).catch((err) => {console.log("LOGIN", err)})
        
     }
@@ -45,7 +49,9 @@ class CreateAccount extends Component {
     render(){
         const { username, email, password } = this.state;
         // const { user } = this.props.userReducer;
-
+        if(this.state.Redirect){
+            return <Redirect to='/explore' />
+        }
 
         console.log(this.props, "USER")
         return (
@@ -60,6 +66,7 @@ class CreateAccount extends Component {
                             onChange={e => 
                                 this.accountHandler(e.target.name, e.target.value)
                             }
+                            type="username"
                             value={username}
                             name="username"
                             />
@@ -71,8 +78,11 @@ class CreateAccount extends Component {
                             onChange={e => 
                                 this.accountHandler(e.target.name, e.target.value)
                             }
+                            
+                            type="email"
                             value={email}
                             name="email"
+                            
                             />
                         </div>
                         <div>
@@ -81,16 +91,20 @@ class CreateAccount extends Component {
                             onChange={e => 
                                 this.accountHandler(e.target.name, e.target.value)
                             }
+                            
+                            type="password"
                             value={password}
                             name="password"
+                           
                             />
                         </div>
                         
-                        <Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>
+                        
+                       
                             <button className="signin-button" onClick={this.createAccount}>Create Account </button>
-                        </Link>
+                      
 
-                        <Link to="/create-account" style={{ color: 'white', textDecoration: 'none'}}>
+                        <Link to="/signin" style={{ color: 'white', textDecoration: 'none'}}>
                             <button className="create-button">signin</button>
                         </Link>
 
@@ -115,4 +129,6 @@ const invokedConnect = connect(
     mapStateToProps,
     mapDispatchToProps 
 )
+
+// Refactoring note create new object because mapStateToProps pulls everything from redux 
 export default invokedConnect( CreateAccount)

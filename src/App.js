@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from '../src/ducks/userReducer';
 import { setToggle } from '../src/ducks/toggleReducer';
@@ -9,6 +9,8 @@ import About from './Components/TravelBook/About/About';
 import SignIn from './Components/TravelBook/SignIn/SignIn';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Explore from './Components/Explore/Explore';
+import Search from './Components/TravelBook/Search/Search';
+import ImageUpload from './Components/Dashboard/Dashboard';
 import CreateAccount from './Components/TravelBook/CreateAccount/CreateAccount';
 import './App.scss';
 
@@ -35,7 +37,7 @@ render(){
        
     <div className="App" >
 
-        {!user ?(
+        {/* {!user ?(
             <ul>
                 <li><Link to="/" style={{ color: 'white', textDecoration: 'none'}}  >Travel Book</Link></li>
                 <li><Link to="/signin" style={{ color: 'white', textDecoration: 'none'}}  >SignIn</Link></li>
@@ -51,15 +53,17 @@ render(){
             </ul>   
             )
         }
-        
+         */}
 
             <Switch>
-                <Route path="/"  exact strict component={TravelBook} />
+                <Route path="/travelbook"  exact strict component={TravelBook} />
+                <Route path="/image-upload"  exact strict component={ImageUpload} />
                 <Route path="/about" exact strict component={About} />
                 <Route path="/signin" exact strict component={SignIn} />
                 <Route path="/create-account" exact strict component={CreateAccount} />
                 <Route path="/explore"  exact strict component={Explore} />
                 <Route path="/dashboard" exact strict component={Dashboard} />
+                <Route path="/" exact strict component={Search} />
         
             </Switch>
         

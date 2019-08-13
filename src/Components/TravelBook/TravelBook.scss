@@ -1,7 +1,15 @@
 $buttonColor: orange;
+$main-background: #FCFAF7;
 $titleSize: 30px;
-$cardHeight: 260px;
-$cardWidth: 260px;
+
+
+%share {
+    font-size: 12px;
+     padding-top: 10px;
+     padding-left: 15px;
+     padding-right: 15px;
+     letter-spacing: .7px;
+}
 
 .header-img{
     width: 100vw;
@@ -69,8 +77,9 @@ $cardWidth: 260px;
 .popular-section {
     margin-top: 145px;
     text-align: center;
-    font-size: $titleSize;
     text-transform: uppercase;
+    font-family: Arial;
+    font-size: 20px;
 }
 
 .popular-line {
@@ -78,7 +87,8 @@ $cardWidth: 260px;
     height: 3px;
     border: none;
     background-color: $buttonColor;
-    margin-bottom: 60px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .popular-line-2 {
@@ -94,8 +104,6 @@ $cardWidth: 260px;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-   
-  
    
  }
 
@@ -138,11 +146,7 @@ a{
      background-color: white;
      width: 260px;
      height: 360px;
-     font-size: 12px;
-     padding-top: 10px;
-     padding-left: 15px;
-     padding-right: 15px;
-     letter-spacing: .7px;
+   @extend %share
 
  }
 
@@ -152,27 +156,31 @@ a{
     background-color: white;
     height: 160px;
     width: 250px;
-    font-size: 12px;
-    padding-top: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
-    letter-spacing: .7px;
+    @extend %share
 }
 
 
+.card-pa {
+    background-color: white;
+}
  .card-name {
     text-transform: uppercase;
-    font-size: 20px;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: 600;
+    padding-left: 20px;
  }
 
  .card-subtitle{
    text-transform: uppercase;
-
+   font-family: Arial;
+   padding-left: 20px;
  }
 
 
  .card-button {
     background-color: $buttonColor;
+    font-family: Arial;
     border-radius: 20px;
     width: 200px;
     color: white;
@@ -190,50 +198,48 @@ footer {
 
 
 
-@media screen and (max-width: 1200px ) {
-    .search-bar input {
-        width: 200px;
-    }
+// @media screen and (max-width: 1200px ) {
+//     .search-bar input {
+//         width: 200px;
+//     }
     
-    .search-bar button {
-        width: 100px;
-    }
+//     .search-bar button {
+//         width: 100px;
+//     }
 
-    .card {
-        width: 300px;
-        height: 330px;
-    }
+//     .card {
+//         width: 300px;
+//         height: 330px;
+//     }
 
-    .card-info {
+//     .card-info {
     
-        height: 320px;
-        width: 250px;
+//         height: 320px;
+//         width: 250px;
     
        
    
-    }
-}
+//     }
+//     .feature{
+//         padding-bottom: 20px;
+//      }
+// }
 
 
 
-@media screen and (max-width: 905px ) {
-    .search-bar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-     }
+// @media screen and (max-width: 905px ) {
+//     .search-bar {
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//      }
 
-     .section-container {
-        height: 300px;
+//      .section-container {
+//         height: 300px;
         
-    }
+//     }
 
-    .popular-section {
-        margin-top: 200px;
-    }
-
-   
-
-
-}
+//     .popular-section {
+//         margin-top: 300px;
+//     }}
 
