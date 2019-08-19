@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { removeFromList, updateList } from '../../ducks/travelReducer';
 import { setUser } from '../../ducks/userReducer';
+import Payment from '../Dashboard/Payment';
 import Navbar from '../Navigation/NavBar';
 import road from '../../Images/road.jpeg';
 import place from '../../Images/place.png';
@@ -103,7 +104,7 @@ render(){
                     <p className="card-p" >{info.description}</p> 
                     <img className="hotel-img" src={info.hotel1} alt='hotel1'/>
                     <img className="hotel-img" src={info.hotel2} alt='hotel1'/>
-                    <button className="book-btn">Book Now</button>
+                    <Payment />
                 </div>
                 <div>
                     <p className="destination-info-rating">{info.rating}/6</p>
