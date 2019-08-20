@@ -153,14 +153,16 @@ render(){
 
     const mappedUserDestination = this.props.travelReducer.Destinations.map((place, index) => (
 
-      <div className="red-red" key = {index}>
+      <div key = {index}>
       
-        <div className="info">
+        <div className="popular-box-2">
 
-            <img className="Destination" src={place.image_url} alt="location"/>
+            <img className="card-2" src={place.image_url} alt="location"/>
+            <div className="card-info-2">
               <p className="card-name">{place.destination}</p>
-              <p className="card-subtitle">{place.country} </p>
-            <button  className="explore-btn" onClick={()=> this.addDestination(place.destination_id)}>Add</button>
+              <p className="card-subtitle"><img src={Location} alt='location'/>{place.country} </p>
+              <button  className="explore-btn" onClick={()=> this.addDestination(place.destination_id)}>Add</button>
+            </div>
             
              
         </div>
@@ -247,7 +249,7 @@ render(){
                         <option value="Africa">Africa</option>
                     </select>
 
-                    <input placeholder="Country" onChange={(e) => this.handleChange(e.target.value)}/>
+                    <input className="country" placeholder="Country" onChange={(e) => this.handleChange(e.target.value)}/>
                        
                        {!user ? (
                            <Link to="/create-account">
@@ -274,7 +276,7 @@ render(){
                     </div>
                    ) : 
                    (
-                    <div className="red">{mappedUserDestination}</div>
+                    <div className="popular-box">{mappedUserDestination}</div>
                    )
                    }
                 </div>

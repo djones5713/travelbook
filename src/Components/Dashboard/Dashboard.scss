@@ -1,196 +1,366 @@
 $main-background: #FCFAF7;
 
-@mixin main {
-    padding-top: 20px;
-}
-
-
-.profile-photo {
-    width: 250px;
-    height: 270px; 
-}
-
-.dashboard-info {
-    @include main;
+// dashboard container 
+.dashboard-head {
     display: flex;
-
-}
-.dashboard {
-    background-color: rgb(129, 180, 179);
+    width: 100vw;
 }
 
-.header {
-  width: 100vw;
-  height: 300px;
-  background-color: rgb(129, 180, 179);
+// dashboard header image 
+.road {
+    height: 400px;
+    width: 80%;
 }
 
-.profile {
-  width: 250px;
-  height: 500px;
-  position: absolute;
-  top: 120px;
-  z-index: 5;
-  background-color: white;
-  margin-left: 50px;  
+// dashboard header information 
+
+.dashboard-box {
+    border: 1px solid rgb(4, 95, 109);
+    height: 398px;
+    width: 300px;
+    background-color: rgb(4, 95, 109);
 }
 
-.about {
+.dashboard-info{
+    display:flex;
+    flex-direction: column;
+    margin-top: 10%;
+    margin-left: 40%;
+    z-index: 3;
+    position: absolute;
+}
+.dashboard-title{
+    font-family: Arial;
     text-transform: uppercase;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 10px;
-
+    color: white;
+    font-size: 40px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
-span {
-    margin-left: 45%;
+.dashboard-p{
+    background-color: transparent;
+    font-family: Arial;
+    color: white;
+    margin-bottom: 0;
+    font-size: 20px;
+    width: 500px;
+
+}
+.dashboard-button{
+    height: 30px;
+    text-transform: uppercase;
+    text-align: center;
+    width: 150px;
+    margin-top: 0;
+    background-color: orange;
+    border-radius: 12px;
+    border-color: orange;
+    color: white;
+    margin-top: 10px;
+    font-weight: 800;
 }
 
-.about-span {
-    margin-left: 39%;
-}
 
+// dashboard user favorites list  of selected destinations
 
-.userlist {
-    background-color: white;
-    width: 800px;
+// user favorite destinations container 
+.userList{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0 auto;
-
+    width: 1000px;
+    margin-left: 200px;
+    margin-top: 100px;
 }
 
-.dashboard-img {
+// user favorite destinations title and description
+
+.destination-box{
+    width: 300px;
+    height: 300px;
+    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.destination-title{
+    font-family: Arial;
+    color: orange;
+    font-size: 35px;
+    font-weight: 900;
+    margin-bottom: 0;
+}
+
+.destination-p{
+    color: gray;
+    font-family: Arial;
+    font-size: 15px;
+}
+
+.destinations-button {
+    height: 30px;
+    text-transform: uppercase;
+    width: 150px;
+    background-color: orange;
+    border-radius: 12px;
+    border-color: orange;
+    color: white;
+    font-weight: 800;
+}
+
+// user favorite destinations carousel and images
+
+.dashboard-destinations{
+    display: flex;
+    width: 100%;
+    overflow: scroll;
+    overflow-y: scroll;
+    position: relative;
+    
+}
+::-webkit-scrollbar { 
+    display: none; 
+};
+
+.dashboard-slider {
     width: 200px;
     height: 200px;
-}
-
-.card-p {
-    padding-left: 10px;
-    background-color: $main-background;
-    word-spacing: 3px;
-    line-height: 15px;
-}
-
-// .card-trash{
-//     margin-left: 570px;
-// }
-
-.about-info{
-   display: flex;
-   background-color: $main-background;
-   font-size: 12px;
-  
-}
-
-// .submit{
-//     display: flex;
-//     justify-content: space-evenly;
-//     align-items: center;
-// }
-
-.submit-date{
-    background-color: $main-background;
-    font-size: 15px;
-}
-
-.submit-input{
-    height: 20px;
-    padding: 0;
-}
-
-.submit-button{
-    height: 20px;
-    width: 50px;
-    background-color: orange;
-    color: white;
-    border-radius: 5px;
-}
-
-
-.container{
-    display: flex;
-    flex-direction: row;
-    margin: 0 auto;
-    background-color: rgb(4, 95, 109);
-    width: 800px;
+    margin: 10px;
    
 }
 
-.dash-subtitle {
-    text-transform: uppercase;
-    font-family: Arial;
-    font-size: 14px;
-    font-weight: 600;
-}
 
-.dash-name {
-    font-family: Arial;
+// user favorites destinations tarsh icon 
+
+.slider-trash{
+   position: absolute;
+    margin-top: 15px;
+    margin-left: -50px;
+    text-align: center;
     color: white;
-    font-weight: 500;
     font-size: 20px;
-    text-transform: uppercase;
+    width: 40px;
+    height: 25px;
+    background-color: #FFA500;
+    z-index: 7;
+    border: none;
 }
 
-.container-info {
-    padding: 30px;
+
+.slider-place{
+    height: 30px;
+    position: absolute;
+    margin-top: -12px;
+    margin-left: -30px;
+}
+
+.slider-location{
     color: white;
+    font-family: Arial;
+    position: absolute;
+    width: 200px;
+    margin-left: -240px;
+    margin-top: 180px;
+    border: none;
+    background-color: transparent;
 }
-@media  screen and (max-width: 1000px ) {
-    .about-info{
-        display: flex;
-        // flex-direction: column;
-        background-color: $main-background;
-        font-size: 12px;
-       
-     }
 
-     .card-img {
-        width: 500px;
-        height: 500px;
+// destinations hotel information 
+.destination-info{
+    display: flex;
+    margin-left: 200px;
+    margin-right: 75px;
+    margin-bottom: 100px;
+    font-family: 'Arial';
+}
+
+.destination-info-rating{
+    background-color: orange;
+    color: white;
+    width: 40px;
+    height: 20px;
+    padding: 5px;
+    position: absolute;
+    text-align: center;
+    font-weight: 600px;
+}
+
+.destination-slider-info{
+    width: 500px;
+    height: 400px;
+}
+
+.destination-trash{
+    display: none;
+}
+
+.destination-info-title{
+    color: orange;
+    margin: 0;
+}
+
+.destination-info-p{
+    color: gray;
+    margin: 0;
+}
+
+.card-p{
+    font-size: 15px;
+    color: gray;
+    margin-right: 40px;
+    margin-bottom: 20px;
+    text-align: justify;
+    line-height: 22px;
+}
+
+
+.hotel-img {
+    width: 200px;
+    height: 110px;;
+    margin-right: 20px
+}
+
+
+.book-btn {
+    background-color: orange;
+    color: white;
+    width: 420px;
+    margin-top: 10px;
+    margin-left: 0;
+    font-family: Arial;
+    height: 30px;
+    text-transform: uppercase;
+    text-align: center;
+    border-color: orange;
+    font-weight: 800;
+
+
+}
+
+
+@media only screen and (max-width: 800px){
+  .userList{
+    margin-left: 20px;
+  }
+
+  .destination-box{
+      padding-right: 0;
+      width: 250px;
+  }
+
+  .destination-p{
+    width: 250px;
+  }
+
+  .dashboard-destinations{
+      width: 530px;
+  }
+
+  .destination-info{ 
+    margin-left: 20px;
+    margin-right: 0;
+  }
+
+  .card-p{
+    width: 380px;
+  }
+
+  .hotel-img{
+    width: 180px;
+
+  }
+
+  .destination-slider-info{
+    width: 360px;
+    height: 400px;
+  }
+  
+}
+
+@media only screen and (max-width: 375px){
+    .dashboard-box{
+        display: none;
     }
 
-    .card-p {
-        width: 300px;
-        background-color: $main-background;
-       
-    }
-
-    .card-trash{
-        position: absolute;
-        left: 300px;
+    .road{
+        width: 96%;
+        height: 300px;
+        margin-top: 120px;
     }
     
-    .submit{
+    .dashboard-info {
+        margin-left: 50px;
+    }
+
+    .dashboard-title {
+        margin-top: 150px;
+        width: auto;
+    }
+
+    .dashboard-p{
+        margin-left: 0;
+        margin-top: 200px;
+        color: white;
+        font-size: 15px;
+        width: 300px;
+        position: absolute;
+    }
+
+    .dashboard-button{
+        margin-top: 60px;
+    }
+
+    .dashboard-destinations{
+        display: none;
+    }
+
+    .destination-box {
+        display: none;
+    }
+
+    .destination-info{
         display: flex;
-        flex-direction: column;
-        width: 300px;
-        justify-content: space-evenly;
-        align-items: center;
+        flex-direction: column-reverse;
+        margin:0;
     }
 
-}
-
-@media  screen and (max-width: 725px ) {
- 
-
-    .userlist{
-        margin-left: 100px;
-        margin-top: 400px;
+    .destination-slider-info{
+        height: 250px;
+        margin-top: 60px;
     }
 
-    .profile{
-        margin-top: 70px;
-        width: 300px;
-        margin-left: 100px;  
-       
+    .destination-info-rating{
+        margin-top: 80px;
     }
 
-    .profile-photo {
-        width: 300px;
+    .destination-info-title{
+        font-size: 25px;
     }
 
+    .destination-info-p{
+        font-size: 25px;
+    }
 
+    .destination-trash{
+        display: block;
+        position: absolute;
+        margin-top: 280px;
+        margin-left: 320px;
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        width: 40px;
+        height: 20px;
+        background-color: #FFA500;
+        z-index: 7;
+        border: none;
+    }
+
+    .card-p{
+        width: 350px;
+    }
+
+    .hotel-img{
+        width: 150px;
+    }
 }
