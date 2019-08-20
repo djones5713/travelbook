@@ -10,6 +10,7 @@ $buttonColorTwo: rgb(129, 180, 179);
 .signin-title{
 padding: 26px;
 font-size: 25px;
+font-family: Arial;
 text-transform: uppercase;
 }
 
@@ -31,6 +32,7 @@ text-transform: uppercase;
     height: 30px;
     text-transform: uppercase;
     text-align: center;
+    font-family: Arial;
     margin: 15px;
     width: 300px;
     background-color: $buttonColor;

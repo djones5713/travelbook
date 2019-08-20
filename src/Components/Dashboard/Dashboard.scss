@@ -234,3 +234,41 @@ $main-background: #FCFAF7;
 }
 
 
+@media only screen and (max-width: 800px){
+  .userList{
+    margin-left: 20px;
+  }
+
+  .destination-box{
+      padding-right: 0;
+      width: 250px;
+  }
+
+  .destination-p{
+    width: 250px;
+  }
+
+  .dashboard-destinations{
+      width: 530px;
+  }
+
+  .destination-info{ 
+    margin-left: 20px;
+    margin-right: 0;
+  }
+
+  .card-p{
+    width: 380px;
+  }
+
+  .hotel-img{
+    width: 180px;
+
+  }
+
+  .destination-slider-info{
+    width: 360px;
+    height: 400px;
+  }
+  
+}

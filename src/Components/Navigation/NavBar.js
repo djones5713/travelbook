@@ -7,28 +7,33 @@ class NavBar extends Component {
     constructor(){
     super()
     this.state = {
-        
+     
     }
     }
     render(){
         const { user } = this.props.userReducer
+        const { toggle } = this.state
         return (
             <div>
-
+                <button className="nav-button" >Menu</button>
                 {!user ?(
-                    <ul className="navbar">
-                           <li className="nav"><Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>Explore</Link></li>
-                        <li className="nav"><Link to="/signin" style={{ color: 'white', textDecoration: 'none'}}  >SignIn</Link></li>
-                        <li className="nav"><Link to="/create-account" style={{ color: 'white', textDecoration: 'none'}} >Create Account</Link></li>
+                    <nav>
+                        <ul className="navbar">
+                            <li className="navLink"><Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>Explore</Link></li>
+                            <li className="navLink"><Link to="/signin" style={{ color: 'white', textDecoration: 'none'}}  >SignIn</Link></li>
+                            <li className="navLink"><Link to="/create-account" style={{ color: 'white', textDecoration: 'none'}} >Create Account</Link></li>
                     </ul>
+                    </nav>
                     ) : (
-                    <ul className="navbar">
-                        <li className="nav"><Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>Explore</Link></li>
-                        <li className="nav"><Link to="/dashboard" style={{ color: 'white', textDecoration: 'none'}} >Dashboard</Link></li>
-                        <Link  to="/" >
-                        <button className="logout" onClick={this.logout}>Logout</button>
-                        </Link>
-                    </ul>   
+                    <nav className={toggle ? 'show' : ""}>
+                        <ul className="navbar">
+                            <li className="navLink"><Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>Explore</Link></li>
+                            <li className="navLink"><Link to="/dashboard" style={{ color: 'white', textDecoration: 'none'}} >Dashboard</Link></li>
+                            <Link  to="/" >
+                            <button className="logout" onClick={this.logout}>Logout</button>
+                            </Link>
+                        </ul> 
+                    </nav>  
                     )
                 }
          
