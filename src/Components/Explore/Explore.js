@@ -6,11 +6,11 @@ import { setUser } from '../../ducks/userReducer';
 import { allDestinations, addToList  } from '../../ducks/travelReducer';
 import { Link } from 'react-router-dom';
 import NavBar from '../Navigation/NavBar';
-import rockss from '../../Images/rockss.jpg';
-import BlueOcean from '../../Images/BlueOcean.jpeg';
-import Havana from '../../Images/Havana.jpeg';
-import Siargao from '../../Images/Siargao.jpeg';
-import Location from '../../Images/Location.svg';
+import rockss from '../Images/rockss.jpg';
+import BlueOcean from '../Images/BlueOcean.jpeg';
+import Havana from '../Images/Havana.jpeg';
+import Siargao from '../Images/Siargao.jpeg';
+import Location from '../Images/Location.svg';
 import './Explore.scss';
 
 const { REACT_APP_API_KEY } = process.env;

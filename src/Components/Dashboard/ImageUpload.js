@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
-import stock from '../../Images/stock.jpg';
+import stock from '../Images/stock.jpg';
 import axios from 'axios';
 import './ImageUpload.scss';
 

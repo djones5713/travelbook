@@ -6,8 +6,8 @@ import { setUser } from '../../ducks/userReducer';
 import { Link } from 'react-router-dom';
 import Payment from '../Dashboard/Payment';
 import Navbar from '../Navigation/NavBar';
-import road from '../../Images/road.jpeg';
-import place from '../../Images/place.png';
+import road from '../Images/road.jpeg';
+import place from '../Images/place.png';
 import '../Dashboard/Dashboard.scss';
 
 
