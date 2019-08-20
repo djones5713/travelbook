@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { setUser } from '../../ducks/userReducer';
 import './NavBar.scss';
 class NavBar extends Component {
@@ -10,6 +11,14 @@ class NavBar extends Component {
      
     }
     }
+
+        
+    logout = () => {
+        axios.get('/api/travelbook/logout').then(res => {
+            this.props.setUser(null);
+        })
+    }
+  
     render(){
         const { user } = this.props.userReducer
         const { toggle } = this.state
@@ -29,7 +38,7 @@ class NavBar extends Component {
                         <ul className="navbar">
                             <li className="navLink"><Link to="/explore" style={{ color: 'white', textDecoration: 'none'}}>Explore</Link></li>
                             <li className="navLink"><Link to="/dashboard" style={{ color: 'white', textDecoration: 'none'}} >Dashboard</Link></li>
-                            <Link  to="/" >
+                            <Link  to="/signin" >
                             <button className="logout" onClick={this.logout}>Logout</button>
                             </Link>
                         </ul> 

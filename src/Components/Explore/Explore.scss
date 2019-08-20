@@ -109,11 +109,11 @@ p {
 
     .search-explore {
         margin-top: -30%;
-        width: 100%;
+        width: 70%;
         height: 100px;
     }
     .divider-info {
-        width: 100vw;
+        width: 98vw;
         height: 100px;
         background-color: rgb(4, 95, 109);
         margin-top: 0;
@@ -134,9 +134,9 @@ p {
     }
 
     .title-explore{
-       margin-top: 140px;
+       margin-top: 230px;
        font-weight: 600;
-       font-size: 22px;
+       font-size: 20px;
        z-index: 5;
     }
     
@@ -144,8 +144,12 @@ p {
        height: 210px;
        background-color: lightgrey;
        position: relative;
+       margin: 0;
+       width: 360px;
+       height: 200px;
 
     }
+
     .search-bar {
         display: flex;
         flex-direction: column;

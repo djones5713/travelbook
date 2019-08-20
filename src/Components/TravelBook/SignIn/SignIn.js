@@ -53,7 +53,7 @@ class SignIn extends Component {
         // const { user } = this.props.userReducer;
 
         if(this.state.redirect){
-            return <Redirect to='/explore' />
+            return <Redirect to='/' />
         }
         return (
        <div className="overlay">

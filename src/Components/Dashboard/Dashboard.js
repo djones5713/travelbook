@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { removeFromList, updateList } from '../../ducks/travelReducer';
 import { setUser } from '../../ducks/userReducer';
+import { Link } from 'react-router-dom';
 import Payment from '../Dashboard/Payment';
 import Navbar from '../Navigation/NavBar';
 import road from '../../Images/road.jpeg';
@@ -108,6 +109,7 @@ render(){
                 </div>
                 <div>
                     <p className="destination-info-rating">{info.rating}/6</p>
+                    <button  className="destination-trash" onClick={() => this.deleteDestination(info.id)}>-</button>
                     <img className="destination-slider-info" src={info.image_url} alt="location"/>
                 </div>
             
@@ -135,7 +137,7 @@ render(){
                     <div className="dashboard-info">
                         <p className='dashboard-p'>Travel To Over 50 Countries Across The Global.</p>
                         <h2 className='dashboard-title'>TravelBook</h2>
-                        <button className='dashboard-button'>Explore</button>
+                        <button className='dashboard-button'><Link to="/">Explore</Link></button>
                     </div>
                 </div>
     
@@ -147,7 +149,7 @@ render(){
                 <div className="destination-box">
                    <h1 className="destination-title">Destinations</h1>
                    <p className="destination-p">Take a look at your favorite destinations.</p>
-                   <button className='destinations-button'>Explore</button>
+                   <button className='destinations-button'><Link to="/">Explore</Link></button>
                 </div>
                 <div className="dashboard-destinations">{ mappedUserDestination }</div>
             </div>  
